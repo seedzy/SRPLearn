@@ -52,8 +52,8 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\CustomRP\Runtime\CustomRenderPiplineAsset.cs" />
      <Compile Include="Assets\CustomRP\Runtime\CustomRenderPipeline.cs" />
+     <Compile Include="Assets\CustomRP\Runtime\CustomRenderPiplineAsset.cs" />
      <Compile Include="Assets\CustomRP\Runtime\CustomCameraRenderer.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -640,20 +640,20 @@
  <Reference Include="Unity.TextMeshPro">
  <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.RenderPipelines.Core.Runtime">
+ <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
  <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
  <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
  <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
  </Reference>
- <Reference Include="Unity.RenderPipelines.Core.Runtime">
- <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+ <Reference Include="UnityEngine.UI">
+ <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.RenderPipelines.Core.Editor">
  <HintPath>D:/Unity/project/SRPLearn/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>

@@ -15,6 +15,17 @@ public class CustomCameraRenderer
 
     private static string _commandBufferName = "CameraRender";
 
+    //不支持的shader pass列表
+    private static ShaderTagId[] legacyShaderTagIds =
+    {
+        new ShaderTagId("Always"),
+        new ShaderTagId("ForwardBase"),
+        new ShaderTagId("PrepassBase"),
+        new ShaderTagId("Vertex"),
+        new ShaderTagId("VertexLMRGBM"),
+        new ShaderTagId("VertexLM")
+    };
+
     /// <summary>
     /// 经过摄像机剔除后剩余物体的信息结构
     /// </summary>
@@ -162,4 +173,6 @@ public class CustomCameraRenderer
 
         return false;
     }
+    
+    private DrawUnsupported
 }
