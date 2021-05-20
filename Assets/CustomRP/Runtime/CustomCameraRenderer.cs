@@ -7,34 +7,38 @@ using UnityEngine.Rendering;
 /// <summary>
 /// 摄像机渲染管理类，用于统一管理摄像机渲染
 /// </summary>
-public class CustomCameraRenderer
+public partial class CustomCameraRenderer
 {
     private ScriptableRenderContext _context;
-    
     private Camera _camera;
-
     private static string _commandBufferName = "CameraRender";
-
-    //不支持的shader pass列表
-    private static ShaderTagId[] legacyShaderTagIds =
-    {
-        new ShaderTagId("Always"),
-        new ShaderTagId("ForwardBase"),
-        new ShaderTagId("PrepassBase"),
-        new ShaderTagId("Vertex"),
-        new ShaderTagId("VertexLMRGBM"),
-        new ShaderTagId("VertexLM")
-    };
 
     /// <summary>
     /// 经过摄像机剔除后剩余物体的信息结构
     /// </summary>
     private CullingResults _cullingResults;
-
     /// <summary>
     /// 一个pass为SRPDefaultUnlit的shaderID
     /// </summary>
     private static ShaderTagId _unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /// <summary>
     /// 1.创建一个命令缓冲区并给他一个名字，方便在FrameDebug中查看，commandBuffer在命令发送后并不会清空！！！重复使用
@@ -69,6 +73,8 @@ public class CustomCameraRenderer
         SetUpCamera();
 
         DrawVisibleGeometry();
+        
+        DrawUnsupportedShaders();
         /////渲染End///////////////////
         
         
@@ -173,6 +179,5 @@ public class CustomCameraRenderer
 
         return false;
     }
-    
-    private DrawUnsupported
+
 }

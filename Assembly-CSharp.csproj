@@ -55,6 +55,7 @@
      <Compile Include="Assets\CustomRP\Runtime\CustomRenderPipeline.cs" />
      <Compile Include="Assets\CustomRP\Runtime\CustomRenderPiplineAsset.cs" />
      <Compile Include="Assets\CustomRP\Runtime\CustomCameraRenderer.cs" />
+     <Compile Include="Assets\CustomRP\Runtime\CustomCameraRenderer.Editor.cs" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
