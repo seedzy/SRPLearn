@@ -62,6 +62,10 @@ public partial class CustomCameraRenderer
         _context = context;
         _camera = camera;
 
+        PrepareBuffer();
+        //该操作可能会引入新的几何体，需放剔除之前，有优化的目的吗？
+        PrepareForSceneWindow();
+        
         /////剔除/////////////////////
         if (!Cull())
         {
@@ -75,6 +79,8 @@ public partial class CustomCameraRenderer
         DrawVisibleGeometry();
         
         DrawUnsupportedShaders();
+        
+        DrawGizmos();
         /////渲染End///////////////////
         
         
@@ -92,14 +98,20 @@ public partial class CustomCameraRenderer
     {
         //这条写这是为了加快buffer清理，so why？
         _context.SetupCameraProperties(_camera);
+
+        CameraClearFlags cameraClearFlags = _camera.clearFlags;
         
         //一开始为避免下一帧图像受上一帧影响需清理下帧缓冲区
-        //第三个参数是什么意思
+        //第三个参数是什么意思,另外，三个参数实际上时为了绑定上摄像机面板上的几个参数，比如控制如何处理上一帧的图像，保留覆盖等的，具体inspector看摄像机
         //这条提前是为了改一个frameDebug commandBuffer名嵌套显示的错误，因为clearRender会默认套一层
-        _commandBuffer.ClearRenderTarget(true, true, Color.clear);
+        _commandBuffer.ClearRenderTarget(
+            cameraClearFlags <= CameraClearFlags.Depth,  
+            cameraClearFlags == CameraClearFlags.Color, 
+            cameraClearFlags == CameraClearFlags.Color ? _camera.backgroundColor.linear : Color.clear
+            );
         //渲染开始和结束时处理commandBuffer sampler以便在profile和Frame Debug中显示渲染流程的一些信息——————
         //只是用于调试
-        _commandBuffer.BeginSample(_commandBufferName);
+        _commandBuffer.BeginSample(SampleCBufferName);
         
         //beginSample也属于commandBuffer的命令，要使其生效则必须手动执行
         ExecuteCommandBuffer();
@@ -144,7 +156,7 @@ public partial class CustomCameraRenderer
     private void SubmitRenderOrder()
     {
         //提交命令前结束对渲染commandBuffer的调试sample
-        _commandBuffer.EndSample(_commandBufferName);
+        _commandBuffer.EndSample(SampleCBufferName);
         ExecuteCommandBuffer();
         
         _context.Submit();

@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/china_unity/release' branch; Version is '2020.3.8f1c1 (0b92326fa640) revision 758322'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home China; OS build 19042.928; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
+OS: 'Windows 10 Home China; OS build 19042.985; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ D:/Unity/project/SRPLearn
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62555
+58308
 Successfully changed project path to: D:/Unity/project/SRPLearn
 D:/Unity/project/SRPLearn
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 19.26 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 20.56 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.8f1c1 (0b92326fa640)
 [Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Resources/UnitySubsystems
@@ -35,155 +35,131 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56768
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56372
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Editor/2020.3.8f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000820 seconds.
+Registered in 0.000733 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 20.33 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 21.30 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.557 seconds
+- Completed reload, in  0.553 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000578 seconds.
+Registered in 0.000586 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 19.88 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 20.66 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.642 seconds
+- Completed reload, in  0.643 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1291 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.2 MB.
-System memory in use after: 63.2 MB.
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1735.
-Total: 1.271600 ms (FindLiveObjects: 0.123300 ms CreateObjectMapping: 0.035200 ms MarkObjects: 1.067200 ms  DeleteObjects: 0.045000 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.cs
-  artifactKey: Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.cs using Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad4ef2c7f78bac49859a02da0ecb5ab5') in 0.024559 seconds
-  Import took 0.026052 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 22.888824 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83ce4294405d79aedc8c40e15295ebdb') in 0.005359 seconds
-  Import took 0.006958 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.007165 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83ce4294405d79aedc8c40e15295ebdb') in 0.001012 seconds
-  Import took 0.002517 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 54.288584 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'caf71b21e8dc79765da8ce915f08f7d3') in 0.001053 seconds
-  Import took 0.002634 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.012464 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'caf71b21e8dc79765da8ce915f08f7d3') in 0.000972 seconds
-  Import took 0.002581 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000556 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
 Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.613 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.19 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1282 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 62.7 MB.
-System memory in use after: 62.8 MB.
+Unloading 1293 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 63.6 MB.
+System memory in use after: 63.6 MB.
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1739.
-Total: 1.172800 ms (FindLiveObjects: 0.105700 ms CreateObjectMapping: 0.031500 ms MarkObjects: 1.024900 ms  DeleteObjects: 0.010100 ms)
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 1737.
+Total: 1.544100 ms (FindLiveObjects: 0.121800 ms CreateObjectMapping: 0.036300 ms MarkObjects: 1.330500 ms  DeleteObjects: 0.054800 ms)
 
 ========================================================================
 Received Import Request.
-  Time since last request: 229.163477 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89daa0040f7b02721a1d031efeb6280e') in 0.003791 seconds
-  Import took 0.006013 seconds .
+  path: Assets/ShaderLibrary/UnityInput.hlsl
+  artifactKey: Guid(44f9711a36bb65f4f9b8cffaee5b5c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/UnityInput.hlsl using Guid(44f9711a36bb65f4f9b8cffaee5b5c4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a2096114a289f9710577831fd80eb6a') in 0.033375 seconds
+  Import took 0.034899 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 30.383743 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f68f6dcaca770d5ae1f4cd6d3a99cc4') in 0.001096 seconds
-  Import took 0.002946 seconds .
+  Time since last request: 386.890212 seconds.
+  path: Assets/ShaderLibrary/Input.hlsl
+  artifactKey: Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Input.hlsl using Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31a568a822071a18da2b2e8477b50fdd') in 0.005842 seconds
+  Import took 0.007702 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.011098 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f68f6dcaca770d5ae1f4cd6d3a99cc4') in 0.001379 seconds
-  Import took 0.003810 seconds .
+  Time since last request: 29.013910 seconds.
+  path: Assets/ShaderLibrary/Input.hlsl
+  artifactKey: Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Input.hlsl using Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '86709eefffc0e39fc97c2faf6569ec3e') in 0.001879 seconds
+  Import took 0.003513 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 53.262157 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6557f51cc12f55ffc7409d18396ed3d3') in 0.001060 seconds
-  Import took 0.003032 seconds .
+  Time since last request: 36.436269 seconds.
+  path: Assets/ShaderLibrary/Input.hlsl
+  artifactKey: Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Input.hlsl using Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afb39ba6b205da0ba7cccf0f014a56c8') in 0.002041 seconds
+  Import took 0.003697 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 9.401477 seconds.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs
-  artifactKey: Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.Editor.cs using Guid(34cdb0801b959da4684714cde86f15fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88b27cf08fdb064b99c7d87c07091b5f') in 0.001252 seconds
-  Import took 0.003206 seconds .
+  Time since last request: 79.016703 seconds.
+  path: Assets/ShaderLibrary/Input.hlsl
+  artifactKey: Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Input.hlsl using Guid(4650ff3ee1a575d4abffb1b816605141) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8cd22ad1ccc862bd456ccf594b8bb17f') in 0.001975 seconds
+  Import took 0.003731 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000573 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.617 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1282 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 62.7 MB.
-System memory in use after: 62.8 MB.
+Received Import Request.
+  Time since last request: 962.979765 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30741325714480474f6dbb91e35622af') in 0.035789 seconds
+  Import took 0.037747 seconds .
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1742.
-Total: 1.239500 ms (FindLiveObjects: 0.112000 ms CreateObjectMapping: 0.038600 ms MarkObjects: 1.078800 ms  DeleteObjects: 0.009500 ms)
+========================================================================
+Received Import Request.
+  Time since last request: 239.539767 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f654022f2401cb9cc754c6c52941806c') in 0.002389 seconds
+  Import took 0.004129 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 102.139172 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd93cf670ad973072d6691b9aa01ee87e') in 0.002083 seconds
+  Import took 0.003702 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 11.216067 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b4c48dfb2bf4de1d9aab103cb946cb4') in 0.002200 seconds
+  Import took 0.004065 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 61.782114 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04f58beb26a374121e645ed2bdbef401') in 0.002015 seconds
+  Import took 0.003678 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.064221 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38540c65a55f57c79a2cdcb61c9c3469') in 0.002108 seconds
+  Import took 0.003793 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.825527 seconds.
+  path: Assets/Shaders/FirstSRPShader.shader
+  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '017c08078783c7e7c0feaac906f2fc0c') in 0.002087 seconds
+  Import took 0.003787 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

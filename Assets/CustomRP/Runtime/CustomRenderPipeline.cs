@@ -26,4 +26,10 @@ public class CustomRenderPipeline : RenderPipeline
             _customCameraRenderer.Render(context, camera);
         }
     }
+
+    public CustomRenderPipeline()
+    {
+        //在构造函数中开启SRP batcher，通过SRP batcher只有cbuffer中的东西发生改变时，unity才会发起一次SetPassCall
+        GraphicsSettings.useScriptableRenderPipelineBatching = true;
+    }
 }
