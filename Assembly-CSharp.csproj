@@ -58,6 +58,7 @@
      <Compile Include="Assets\CustomRP\Runtime\CustomCameraRenderer.cs" />
      <None Include="Assets\ShaderLibrary\UnityInput.hlsl" />
      <None Include="Assets\ShaderLibrary\Input.hlsl" />
+     <None Include="Assets\Shaders\Light\Lit.shader" />
      <None Include="Assets\Shaders\FirstSRPShader.shader" />
  <Reference Include="UnityEngine">
  <HintPath>D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

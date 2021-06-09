@@ -6,10 +6,12 @@
 CBUFFER_START(UnityPerDraw)
 float4x4 unity_ObjectToWorld;
 float4x4 unity_WorldToObject;
-float4x4 unity_MatrixV;
-float4x4 unity_MatrixVP;
 float4x4 glstate_matrix_projection;
 CBUFFER_END
+
+//这几个不知道什么不支持SRP batcher
+float4x4 unity_MatrixV;
+float4x4 unity_MatrixVP;
 
 //ToDo，暂时这么写了
 #define real4 float4

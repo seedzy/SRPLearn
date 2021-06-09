@@ -9,13 +9,15 @@ using UnityEngine.Rendering;
 [CreateAssetMenu(menuName = "Rendering/CreateCustomRenderPipeline")]
 public class CustomRenderPiplineAsset : RenderPipelineAsset
 {
+    //设置是否使用批处理
+    [SerializeField] private bool useGPUInstancing = true, useDynamicBatching = true, useSRPBatcher = true;
     /// <summary>
     /// 继承方法，需返回一个管线实例
     /// </summary>
     /// <returns></returns>
     protected override RenderPipeline CreatePipeline()
     {
-        CustomRenderPipeline customRenderPipeline = new CustomRenderPipeline();
+        CustomRenderPipeline customRenderPipeline = new CustomRenderPipeline(useGPUInstancing, useDynamicBatching, useSRPBatcher);
         
         return customRenderPipeline;
     }

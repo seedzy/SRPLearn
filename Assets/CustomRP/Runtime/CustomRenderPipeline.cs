@@ -9,10 +9,23 @@ using UnityEngine.Rendering;
 /// </summary>
 public class CustomRenderPipeline : RenderPipeline
 {
+    private bool _useGPUInstancing, _useDynamicBatching;
+    
+    
     /// <summary>
     /// 摄像机渲染实例，用于指定特定摄像机的渲染方式
     /// </summary>
     private CustomCameraRenderer _customCameraRenderer = new CustomCameraRenderer();
+    
+    
+    public CustomRenderPipeline(bool useGPUInstancing, bool useDynamicBatching, bool useSRPBatcher)
+    {
+        _useGPUInstancing = useGPUInstancing;
+        _useDynamicBatching = useDynamicBatching;
+        
+        //在构造函数中开启SRP batcher，通过SRP batcher只有cbuffer中的东西发生改变时，unity才会发起一次SetPassCall
+        GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
+    }
     
     /// <summary>
     /// 每一帧都会调用该方法进行渲染
@@ -23,13 +36,9 @@ public class CustomRenderPipeline : RenderPipeline
     {
         foreach (var camera in cameras)
         {
-            _customCameraRenderer.Render(context, camera);
+            _customCameraRenderer.Render(context, camera, _useGPUInstancing, _useDynamicBatching);
         }
     }
 
-    public CustomRenderPipeline()
-    {
-        //在构造函数中开启SRP batcher，通过SRP batcher只有cbuffer中的东西发生改变时，unity才会发起一次SetPassCall
-        GraphicsSettings.useScriptableRenderPipelineBatching = true;
-    }
+
 }

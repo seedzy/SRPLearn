@@ -22,6 +22,8 @@ public partial class CustomCameraRenderer
     /// </summary>
     private static ShaderTagId _unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
 
+    private static ShaderTagId _litShaderTagId = new ShaderTagId("CustomLit");
+
     
     
     
@@ -57,7 +59,7 @@ public partial class CustomCameraRenderer
     /// </summary>
     /// <param name="context"></param>
     /// <param name="camera"></param>
-    public void Render(ScriptableRenderContext context, Camera camera)
+    public void Render(ScriptableRenderContext context, Camera camera, bool useGPUInstancing, bool useDynamicBatching)
     {
         _context = context;
         _camera = camera;
@@ -76,7 +78,7 @@ public partial class CustomCameraRenderer
         /////渲染Begin////////////////
         SetUpCamera();
 
-        DrawVisibleGeometry();
+        DrawVisibleGeometry(useGPUInstancing, useDynamicBatching);
         
         DrawUnsupportedShaders();
         
@@ -120,7 +122,9 @@ public partial class CustomCameraRenderer
     /// <summary>
     /// 渲染可见几何物体
     /// </summary>
-    private void DrawVisibleGeometry()
+    /// <param name="useGPUInstancing"></param>
+    /// <param name="useDynamicBatching"></param>
+    private void DrawVisibleGeometry(bool useGPUInstancing, bool useDynamicBatching)
     {
         //DrawRenderers相关API： https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ScriptableRenderContext.DrawRenderers.html
         /////物体绘制
@@ -131,7 +135,12 @@ public partial class CustomCameraRenderer
             criteria = SortingCriteria.CommonOpaque
         };
         
-        DrawingSettings drawingSettings = new DrawingSettings(_unlitShaderTagId, sortingSettings);
+        DrawingSettings drawingSettings = new DrawingSettings(_unlitShaderTagId, sortingSettings)
+        {
+            //设置是否使用两种批处理
+            enableInstancing = useGPUInstancing,
+            enableDynamicBatching = useDynamicBatching
+        };
         //用于过滤渲染队列里的对象
         //先渲染不透明
         FilteringSettings filteringSettings = new FilteringSettings(RenderQueueRange.opaque);
