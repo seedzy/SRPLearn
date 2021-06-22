@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 975423821
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: luoqiangui.editor
+      Dependencies: {}

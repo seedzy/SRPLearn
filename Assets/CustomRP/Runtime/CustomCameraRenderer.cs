@@ -17,30 +17,17 @@ public partial class CustomCameraRenderer
     /// 经过摄像机剔除后剩余物体的信息结构
     /// </summary>
     private CullingResults _cullingResults;
+
+    /// <summary>
+    /// 用于获取并在管线中设置光源信息
+    /// </summary>
+    private Lighting _lighting = new Lighting();
     /// <summary>
     /// 一个pass为SRPDefaultUnlit的shaderID
     /// </summary>
     private static ShaderTagId _unlitShaderTagId = new ShaderTagId("SRPDefaultUnlit");
 
     private static ShaderTagId _litShaderTagId = new ShaderTagId("CustomLit");
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /// <summary>
     /// 1.创建一个命令缓冲区并给他一个名字，方便在FrameDebug中查看，commandBuffer在命令发送后并不会清空！！！重复使用
@@ -54,10 +41,26 @@ public partial class CustomCameraRenderer
         name = _commandBufferName
     };
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /// <summary>
     /// 摄像机渲染Pipeline
     /// </summary>
-    /// <param name="context"></param>
+    /// <param name="context">大概就是个渲染环境配置，供整个渲染流程访问
+    /// https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ScriptableRenderContext.html</param>
     /// <param name="camera"></param>
     public void Render(ScriptableRenderContext context, Camera camera, bool useGPUInstancing, bool useDynamicBatching)
     {
@@ -77,6 +80,8 @@ public partial class CustomCameraRenderer
         
         /////渲染Begin////////////////
         SetUpCamera();
+        
+        _lighting.SetUp(context);
 
         DrawVisibleGeometry(useGPUInstancing, useDynamicBatching);
         
@@ -92,13 +97,26 @@ public partial class CustomCameraRenderer
         
     }
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /// <summary>
     /// 设置摄像机渲染的基础属性，投影矩阵啊什么的，自然是要在物体渲染之前设置好，
     /// 以及一些基本清空缓冲什么的
     /// </summary>
     private void SetUpCamera()
     {
-        //这条写这是为了加快buffer清理，so why？
+        //这条写这,是为了加快buffer清理，so why？
         _context.SetupCameraProperties(_camera);
 
         CameraClearFlags cameraClearFlags = _camera.clearFlags;
@@ -141,6 +159,9 @@ public partial class CustomCameraRenderer
             enableInstancing = useGPUInstancing,
             enableDynamicBatching = useDynamicBatching
         };
+        
+        drawingSettings.SetShaderPassName(1, _litShaderTagId);
+        
         //用于过滤渲染队列里的对象
         //先渲染不透明
         FilteringSettings filteringSettings = new FilteringSettings(RenderQueueRange.opaque);

@@ -16,7 +16,7 @@ public partial class CustomCameraRenderer
     private static Material errorMaterial;
 
     /// <summary>
-    /// 设置这个以及之后else的值是为了避免访问camera.name带来的内存分配，可是为什么不在player模式时去掉调试采样呢？？？
+    /// 设置这个以及之后#else的值是为了避免访问camera.name带来的内存分配，可是为什么不在player模式时去掉调试采样呢？？？
     /// </summary>
     private string SampleCBufferName {get;set;}
     

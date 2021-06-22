@@ -37,10 +37,12 @@ Shader "SRP/FirstSRPShader"
             CBUFFER_START(UnityPerMaterial)
 
             half4 _Tint;
-            sampler2D _MainTex;
+            
             float4 _MainTex_ST;
 
             CBUFFER_END
+
+            sampler2D _MainTex;
 
             
             
@@ -56,6 +58,7 @@ Shader "SRP/FirstSRPShader"
             {
                 float2 uv : TEXCOORD0;
                 float4 vertex : SV_POSITION;
+                UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
 
