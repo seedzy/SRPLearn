@@ -16,6 +16,7 @@ float4x4 unity_MatrixVP;
 //ToDo，暂时这么写了
 #define real4 float4
 real4 unity_WorldTransformParams; // w is usually 1.0, or -1.0 for odd-negative scale transforms
+float3 _WordSpaceCameraPos;
 
 
 

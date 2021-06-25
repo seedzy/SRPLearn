@@ -8,6 +8,7 @@ struct Surface
     half alpha;
     float metallic;
     float smoothness;
+    float3 viewDir;
 };
 
 #endif

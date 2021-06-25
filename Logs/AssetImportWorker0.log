@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/china_unity/release' branch; Version is '2020.3.8f1c1 (0b92326fa640) revision 758322'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home China; OS build 19043.1052; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
+OS: 'Windows 10 Home China; OS build 19043.1081; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ D:/Unity/project/SRPLearn
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51775
+64657
 Successfully changed project path to: D:/Unity/project/SRPLearn
 D:/Unity/project/SRPLearn
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 21.43 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 20.91 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.8f1c1 (0b92326fa640)
 [Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Resources/UnitySubsystems
@@ -35,291 +35,67 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56252
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56180
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Editor/2020.3.8f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000768 seconds.
+Registered in 0.000760 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 22.63 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 21.44 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.607 seconds
+- Completed reload, in  0.570 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000643 seconds.
+Registered in 0.000623 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 21.48 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 20.94 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.660 seconds
+- Completed reload, in  0.650 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.26 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1297 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 63.7 MB.
 System memory in use after: 63.8 MB.
 
 Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1742.
-Total: 1.241500 ms (FindLiveObjects: 0.113800 ms CreateObjectMapping: 0.036000 ms MarkObjects: 1.046400 ms  DeleteObjects: 0.044400 ms)
+Total: 1.261200 ms (FindLiveObjects: 0.120300 ms CreateObjectMapping: 0.038000 ms MarkObjects: 1.053100 ms  DeleteObjects: 0.048800 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/CustomRP/Runtime/CustomCameraRenderer.cs
-  artifactKey: Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/CustomCameraRenderer.cs using Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '666e52542a81a38a8a7e096f49444f8e') in 0.033092 seconds
-  Import took 0.034699 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000213 seconds.
-  path: Assets/CustomRP/Runtime/LightData/Lighting.cs
-  artifactKey: Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/Lighting.cs using Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6fd446a0dfb25db372e0066bbaae1da') in 0.003990 seconds
-  Import took 0.005650 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000552 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.576 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1285 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.0 MB.
-System memory in use after: 63.1 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1745.
-Total: 1.274500 ms (FindLiveObjects: 0.130000 ms CreateObjectMapping: 0.040200 ms MarkObjects: 1.089900 ms  DeleteObjects: 0.013300 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 4778.895091 seconds.
-  path: Assets/CustomRP/Runtime/LightData/Lighting.cs
-  artifactKey: Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/Lighting.cs using Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42cd69ed28e77e5dd6838994e584909e') in 0.041455 seconds
-  Import took 0.061702 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 12.837940 seconds.
-  path: Assets/CustomRP/Runtime/LightData/张毅的dll.asmdef
-  artifactKey: Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/张毅的dll.asmdef using Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b22bba35812587d4adccc20c9e38caf') in 0.022025 seconds
-  Import took 0.024121 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.013302 seconds.
-  path: Assets/CustomRP/Runtime/LightData/张毅的dll.asmdef
-  artifactKey: Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/张毅的dll.asmdef using Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b22bba35812587d4adccc20c9e38caf') in 0.001558 seconds
-  Import took 0.003436 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000727 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.28 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.779 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.52 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1285 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.1 MB.
-System memory in use after: 63.2 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1748.
-Total: 1.857400 ms (FindLiveObjects: 0.212900 ms CreateObjectMapping: 0.055300 ms MarkObjects: 1.575300 ms  DeleteObjects: 0.013200 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 10.131524 seconds.
-  path: Assets/CustomRP/Runtime/LightData/张艺的dll.asmdef
-  artifactKey: Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/张艺的dll.asmdef using Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26c5584a8f806657661bc135c3d42fbc') in 0.007139 seconds
-  Import took 0.010208 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.002909 seconds.
-  path: Assets/CustomRP/Runtime/LightData/张艺的dll.asmdef
-  artifactKey: Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/CustomRP/Runtime/LightData/张艺的dll.asmdef using Guid(979aeabf3f341064caa2671f205ce555) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26c5584a8f806657661bc135c3d42fbc') in 0.001236 seconds
-  Import took 0.003061 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000624 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.28 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.703 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.25 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1285 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.1 MB.
-System memory in use after: 63.2 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1751.
-Total: 1.310700 ms (FindLiveObjects: 0.128400 ms CreateObjectMapping: 0.038900 ms MarkObjects: 1.132100 ms  DeleteObjects: 0.010500 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000667 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.29 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.657 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1285 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.1 MB.
-System memory in use after: 63.2 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1754.
-Total: 1.335700 ms (FindLiveObjects: 0.126000 ms CreateObjectMapping: 0.038700 ms MarkObjects: 1.159900 ms  DeleteObjects: 0.010100 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 19028.621856 seconds.
-  path: Assets/Shaders/Light/Lit.shader
-  artifactKey: Guid(997e87f14eb34d346bb2c905c6894ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/Light/Lit.shader using Guid(997e87f14eb34d346bb2c905c6894ac3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17ccdf27c39e2e313e36ebaa1dad0668') in 0.099322 seconds
-  Import took 0.133262 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1.103288 seconds.
-  path: Assets/Shaders/Light/BRDF.hlsl
-  artifactKey: Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/Light/BRDF.hlsl using Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8b7db1503e488ba6ab6c20a1bed51ee') in 0.016139 seconds
-  Import took 0.018107 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 9.358007 seconds.
-  path: Assets/ShaderLibrary/Light.hlsl
-  artifactKey: Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Light.hlsl using Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d20a5ac6bbe3f185a2c41452bddcb78') in 0.004466 seconds
-  Import took 0.006436 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000731 seconds.
-  path: Assets/ShaderLibrary/Light.hlsl
-  artifactKey: Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Light.hlsl using Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d20a5ac6bbe3f185a2c41452bddcb78') in 0.001270 seconds
-  Import took 0.002770 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 112.405843 seconds.
   path: Assets/ShaderLibrary/BRDF.hlsl
   artifactKey: Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/BRDF.hlsl using Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfaa5951d91e23bf48d3f513b4a27c51') in 0.001342 seconds
-  Import took 0.003473 seconds .
+Start importing Assets/ShaderLibrary/BRDF.hlsl using Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fa4ccda52d7442fec1e1f84c4c0f5e2') in 0.036961 seconds
+  Import took 0.038938 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 143.672756 seconds.
-  path: Assets/ShaderLibrary/BRDF.hlsl
-  artifactKey: Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/BRDF.hlsl using Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f01cc0f963dc4ac41a68d9d2e8386d91') in 0.001322 seconds
-  Import took 0.003166 seconds .
+  Time since last request: 5935.571016 seconds.
+  path: Assets/ShaderLibrary/Common.hlsl
+  artifactKey: Guid(615d22e01d94b9e4c8390171f72f8f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Common.hlsl using Guid(615d22e01d94b9e4c8390171f72f8f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e3f6046badbf0b3a235e3b594f014c1') in 0.014588 seconds
+  Import took 0.027740 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 131.636738 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '420b39c2000b2a32a882c7e29c9064ee') in 0.004707 seconds
-  Import took 0.006530 seconds .
+  Time since last request: 121.403265 seconds.
+  path: Assets/ShaderLibrary/Common.hlsl
+  artifactKey: Guid(615d22e01d94b9e4c8390171f72f8f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/Common.hlsl using Guid(615d22e01d94b9e4c8390171f72f8f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '733385bd6a7967533b17e55384c82180') in 0.002097 seconds
+  Import took 0.004111 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000422 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '420b39c2000b2a32a882c7e29c9064ee') in 0.001351 seconds
-  Import took 0.002960 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 56.521400 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '287f39c07ca60b1a5349b4d6bb5c7f46') in 0.001528 seconds
-  Import took 0.003634 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 47.284740 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0564881417204b951a57b4d48b485660') in 0.001316 seconds
-  Import took 0.003298 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 60.879608 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fa41af9dfd1998217983ea67c6118f4') in 0.001370 seconds
-  Import took 0.003263 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.016429 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1fa41af9dfd1998217983ea67c6118f4') in 0.001667 seconds
-  Import took 0.003393 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 71.988203 seconds.
-  path: Assets/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a9c5043dc385560302bb5fef56ebd015') in 0.002321 seconds
-  Import took 0.004403 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1713.951012 seconds.
-  path: Packages/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl
-  artifactKey: Guid(5eb5e8e99ae281342bae5c7b296b3ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl using Guid(5eb5e8e99ae281342bae5c7b296b3ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4aabf964a0aa70c180e39d92559241d8') in 0.005197 seconds
-  Import took 0.007488 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000370 seconds.
-  path: Packages/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl
-  artifactKey: Guid(5eb5e8e99ae281342bae5c7b296b3ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Packages/com.unity.render-pipelines.core/ShaderLibrary/BSDF.hlsl using Guid(5eb5e8e99ae281342bae5c7b296b3ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4aabf964a0aa70c180e39d92559241d8') in 0.001287 seconds
-  Import took 0.002719 seconds .
+  Time since last request: 1691.355894 seconds.
+  path: Assets/Materials/Lit.mat
+  artifactKey: Guid(b7a6ff037a71b0c4081d12a1218d28f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/Lit.mat using Guid(b7a6ff037a71b0c4081d12a1218d28f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa1418ea1f3684d3759daa23b46761cf') in 0.105590 seconds
+  Import took 0.107756 seconds .
 
 AssetImportWorkerClient::OnTransportError - code=2 error=End of file

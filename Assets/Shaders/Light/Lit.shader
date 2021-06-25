@@ -52,8 +52,9 @@ Shader "SRP/Lit"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
+                float4 pos : SV_POSITION;
                 float3 normalWS : TEXCOORD1;
+                float3 wordPos : TEXCOORD2;
                 UNITY_VERTEX_INPUT_INSTANCE_ID
             };
 
@@ -67,8 +68,9 @@ Shader "SRP/Lit"
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_TRANSFER_INSTANCE_ID(v, o);
                 
-                o.vertex = TransformObjectToHClip(v.vertex);
+                o.pos = TransformObjectToHClip(v.vertex);
                 o.normalWS = TransformObjectToWorldNormal(v.nomral);
+                o.wordPos = TransformObjectToWorld(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
@@ -83,15 +85,21 @@ Shader "SRP/Lit"
                 //instancing需要通过这个宏来访问静态缓冲区的属性
                 half4 col = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
 
+                float3 viewDir = normalize(_WordSpaceCameraPos - i.wordPos);
+
+                //设置表面属性
                 Surface surface;
                 surface.normalWS = i.normalWS;
                 surface.color = col.rgb;
                 surface.alpha = col.a;
                 surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Metallic);
                 surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Smoothness);
+                surface.viewDir = viewDir;
 
+                //获得BRDF属性
                 BRDF brdf = GetBRDF(surface);
 
+                //通过BRDF结构获得最终光照
                 half3 finCol = GetLighting(surface, brdf);
                 
                 return half4(finCol, surface.alpha);
