@@ -3,6 +3,9 @@ Shader "SRP/Lit"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _BaseColor("色调", Color) = (1,1,1,1)
+        _Metallic("金属度", Range(0, 1)) = 1
+        _Smoothness("光滑度", Range(0, 1)) = 0.5
     }
     SubShader
     {
@@ -12,17 +15,29 @@ Shader "SRP/Lit"
         Pass
         {
             HLSLPROGRAM
+            //设置着色器编译级别以支持更多现代功能
+            //https://docs.unity3d.com/cn/2019.3/Manual/SL-ShaderCompileTargets.html
+            #pragma target 3.5
+            
             #pragma vertex vert
             #pragma fragment frag
             #include "Assets/ShaderLibrary/Input.hlsl"
             #include "Assets/ShaderLibrary/Surface.hlsl"
             #include "Assets/ShaderLibrary/Lighting.hlsl"
             
+            //SRP Batcher
+            // CBUFFER_START(UnityPerMaterial)
+            // float4 _MainTex_ST;
+            // CBUFFER_END
 
-            CBUFFER_START(UnityPerMaterial)
+            //GPU instancing
+            UNITY_INSTANCING_BUFFER_START(UnityPerMaterial)
+            UNITY_DEFINE_INSTANCED_PROP(half4, _BaseColor)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Metallic)
+            UNITY_DEFINE_INSTANCED_PROP(float, _Smoothness)
+            UNITY_INSTANCING_BUFFER_END(UnityPerMaterial)
+
             float4 _MainTex_ST;
-            CBUFFER_END
-            
             TEXTURE2D(_MainTex);
             SAMPLER(sampler_MainTex);
 
@@ -46,7 +61,12 @@ Shader "SRP/Lit"
 
             v2f vert (a2v v)
             {
+                
                 v2f o;
+                //ToDo这个instancing还是多看几遍吧
+                UNITY_SETUP_INSTANCE_ID(v);
+                UNITY_TRANSFER_INSTANCE_ID(v, o);
+                
                 o.vertex = TransformObjectToHClip(v.vertex);
                 o.normalWS = TransformObjectToWorldNormal(v.nomral);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
@@ -55,16 +75,24 @@ Shader "SRP/Lit"
 
             half4 frag (v2f i) : SV_Target
             {
+                UNITY_SETUP_INSTANCE_ID(i);
+                
                 // sample the texture
-                half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                //half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+
+                //instancing需要通过这个宏来访问静态缓冲区的属性
+                half4 col = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
 
                 Surface surface;
                 surface.normalWS = i.normalWS;
                 surface.color = col.rgb;
                 surface.alpha = col.a;
+                surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Metallic);
+                surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Smoothness);
 
-                half3 finCol = GetLighting(surface);
-                
+                BRDF brdf = GetBRDF(surface);
+
+                half3 finCol = GetLighting(surface, brdf);
                 
                 return half4(finCol, surface.alpha);
             }

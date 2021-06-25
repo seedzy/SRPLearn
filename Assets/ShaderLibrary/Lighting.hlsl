@@ -3,16 +3,22 @@
 
 #include "Assets/ShaderLibrary/Surface.hlsl"
 #include "Assets/ShaderLibrary/Light.hlsl"
+#include "Assets/ShaderLibrary/BRDF.hlsl"
 
-float3 GetLighting(Surface surface, Light light)
+half3 GetLighting(Surface surface, BRDF brdf, Light light)
 {
-    return saturate(dot(surface.normalWS, light.direction)) * light.color;
+    return saturate(dot(surface.normalWS, light.direction)) * light.color * brdf.diffuse;
 }
 
-//为什么要写个重载
-float3 GetLighting(Surface surface)
+//重载方便处理多个光源
+float3 GetLighting(Surface surface, BRDF brdf)
 {
-    return GetLighting(surface, GetMainLight());
+    half3 col;
+    for(int i = 0; i < GetDirLightCount(); i++)
+    {
+        col += GetLighting(surface, brdf, GetDirLight(i));
+    }
+    return  col;
 }
 
 #endif

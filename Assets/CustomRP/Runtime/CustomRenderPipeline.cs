@@ -25,6 +25,9 @@ public class CustomRenderPipeline : RenderPipeline
         
         //在构造函数中开启SRP batcher，通过SRP batcher只有cbuffer中的东西发生改变时，unity才会发起一次SetPassCall
         GraphicsSettings.useScriptableRenderPipelineBatching = useSRPBatcher;
+
+        //设置light的颜色空间？。。。Lighting.cs里也可以设啊
+        GraphicsSettings.lightsUseLinearIntensity = true;
     }
     
     /// <summary>

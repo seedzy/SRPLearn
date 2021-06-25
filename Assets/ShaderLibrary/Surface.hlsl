@@ -6,6 +6,8 @@ struct Surface
     float3 normalWS;
     half3 color;
     half alpha;
+    float metallic;
+    float smoothness;
 };
 
 #endif

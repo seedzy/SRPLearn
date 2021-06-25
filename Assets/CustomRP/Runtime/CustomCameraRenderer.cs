@@ -81,7 +81,7 @@ public partial class CustomCameraRenderer
         /////渲染Begin////////////////
         SetUpCamera();
         
-        _lighting.SetUp(context);
+        _lighting.SetUp(context, _cullingResults);
 
         DrawVisibleGeometry(useGPUInstancing, useDynamicBatching);
         
