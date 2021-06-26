@@ -7,7 +7,7 @@
 
 half3 GetLighting(Surface surface, BRDF brdf, Light light)
 {
-    return saturate(dot(surface.normalWS, light.direction)) * light.color * brdf.diffuse;
+    return saturate(dot(surface.normalWS, light.direction)) * light.color * GetDirectLightBRDF(surface, brdf, light);
 }
 
 //重载方便处理多个光源

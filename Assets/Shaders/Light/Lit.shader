@@ -6,14 +6,22 @@ Shader "SRP/Lit"
         _BaseColor("色调", Color) = (1,1,1,1)
         _Metallic("金属度", Range(0, 1)) = 1
         _Smoothness("光滑度", Range(0, 1)) = 0.5
+        
+        [Enum(UnityEngine.Rendering.BlendMode)] _SrcBlend("SrcBlend", float) = 1
+        [Enum(UnityEngine.Rendering.BlendMode)] _DstBlend("DstBlend", float) = 0
+        
+        [Toggle(_PREMULTIPLY_ALPHA)]_PremulAlpha("预乘Alpha", float) = 0
+        [Toggle(_Alpha_Clip)]_AlphaClip("AlphaClip", float) = 0
     }
     SubShader
     {
-        Tags { "LightMode" = "CustomLit" }
+        Tags { "LightMode" = "CustomLit" "RenderQueue" = "Transparent"}
         LOD 100
 
         Pass
         {
+            Blend[_SrcBlend][_DstBlend]
+            
             HLSLPROGRAM
             //设置着色器编译级别以支持更多现代功能
             //https://docs.unity3d.com/cn/2019.3/Manual/SL-ShaderCompileTargets.html
@@ -21,6 +29,10 @@ Shader "SRP/Lit"
             
             #pragma vertex vert
             #pragma fragment frag
+            //定义一个开启透明度预乘的关键字
+            #pragma shader_feature _PREMULTIPLY_ALPHA
+            #pragma shader_feature _ALPHA_Clip
+            
             #include "Assets/ShaderLibrary/Input.hlsl"
             #include "Assets/ShaderLibrary/Surface.hlsl"
             #include "Assets/ShaderLibrary/Lighting.hlsl"
@@ -89,7 +101,7 @@ Shader "SRP/Lit"
 
                 //设置表面属性
                 Surface surface;
-                surface.normalWS = i.normalWS;
+                surface.normalWS = normalize(i.normalWS);
                 surface.color = col.rgb;
                 surface.alpha = col.a;
                 surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Metallic);
@@ -97,7 +109,15 @@ Shader "SRP/Lit"
                 surface.viewDir = viewDir;
 
                 //获得BRDF属性
+            #if defined(_PREMULTIPLY_ALPHA)
+                BRDF brdf = GetBRDF(surface, true);
+            #else
                 BRDF brdf = GetBRDF(surface);
+            #endif
+
+            // #if defined(_ALPHA_Clip)
+            //     clip()
+                
 
                 //通过BRDF结构获得最终光照
                 half3 finCol = GetLighting(surface, brdf);
@@ -107,4 +127,8 @@ Shader "SRP/Lit"
             ENDHLSL
         }
     }
+    
+    
+    //自定义shader面板
+    CustomEditor "CustomShaderGUI"
 }
