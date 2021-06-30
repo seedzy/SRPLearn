@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Lighting
 {
@@ -33,6 +34,11 @@ public class Lighting
     private Vector4[] _dirLightColors = new Vector4[MaxDirLightCount];
     private Vector4[] _dirLightDirections = new Vector4[MaxDirLightCount];
 
+    /// <summary>
+    /// lighting里的shadows
+    /// </summary>
+    private Shadows _shadows = new Shadows();
+
     public void SetUp(ScriptableRenderContext context, CullingResults cullingResults, ShadowSettings shadowSettings)
     {
         _cullingResults = cullingResults;
@@ -40,6 +46,8 @@ public class Lighting
         _commandBuffer.BeginSample(BufferName);
         
         SetUpLight();
+        //进行阴影设置
+        _shadows.SetUp(context, cullingResults, shadowSettings);
         
         _commandBuffer.EndSample(BufferName);
         

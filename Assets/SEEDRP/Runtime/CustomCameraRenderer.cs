@@ -72,7 +72,7 @@ public partial class CustomCameraRenderer
         PrepareForSceneWindow();
         
         /////剔除/////////////////////
-        if (!Cull())
+        if (!Cull(shadowSettings.maxDistance))
         {
             Debug.LogError("剔除失败");
             return;
@@ -207,14 +207,17 @@ public partial class CustomCameraRenderer
     /// 剔除操作
     /// </summary>
     /// <returns></returns>
-    private bool Cull()
+    private bool Cull(float maxDistance)
     {
         //用于配置可编程渲染管线中的剔除操作的参数 https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ScriptableCullingParameters.html
         //从摄像机获取剔除所需数据，在接下来用该数据进行正式剔除，SRP下应该可以手动改吧。。。。应该。。。
-        ScriptableCullingParameters scriptableCullingParameters;
+        //ScriptableCullingParameters scriptableCullingParameters;
 
-        if (_camera.TryGetCullingParameters(out scriptableCullingParameters))
+        if (_camera.TryGetCullingParameters(out ScriptableCullingParameters scriptableCullingParameters))
         {
+            //摄像机远截平面距离和最大阴影距离进行比较，得到阴影渲染的最大距离
+            scriptableCullingParameters.shadowDistance = Mathf.Min(maxDistance, _camera.farClipPlane);
+            
             _cullingResults = _context.Cull(ref scriptableCullingParameters);
             return true;
         }
