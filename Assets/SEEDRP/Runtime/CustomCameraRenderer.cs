@@ -79,9 +79,16 @@ public partial class CustomCameraRenderer
         }
         
         /////渲染Begin////////////////
+
+        //因为物体表面颜色是可以被阴影影响的，所以物体开始渲染前需要知道自己在不在阴影中
+        //因此，这里拿到几何体信息后需要先生成LightSpace深度图
+        //至于灯光绘制为什么也提前。。。。你以为shader用的灯光信息哪来的
+        //PS ：至于为什么要提前到Camera之前。。。现在还不理解
+        _lighting.SetUp(context, _cullingResults, shadowSettings);
+        
         SetUpCamera();
         
-        _lighting.SetUp(context, _cullingResults, shadowSettings);
+        
 
         DrawVisibleGeometry(useGPUInstancing, useDynamicBatching);
         
@@ -91,6 +98,7 @@ public partial class CustomCameraRenderer
         /////渲染End///////////////////
         
         
+        _lighting.CleanUp();
         //////提交/////////
         SubmitRenderOrder();
         

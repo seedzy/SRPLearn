@@ -3,6 +3,9 @@ using UnityEngine;
 [System.Serializable]
 public class ShadowSettings
 {
+    /// <summary>
+    /// 最大阴影渲染距离
+    /// </summary>
     [Min(0f)] 
     public float maxDistance = 100;
     

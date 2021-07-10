@@ -45,9 +45,13 @@ public class Lighting
         //开启一个cb采样以便在analysis里查看
         _commandBuffer.BeginSample(BufferName);
         
-        SetUpLight();
         //进行阴影设置
         _shadows.SetUp(context, cullingResults, shadowSettings);
+        
+        SetUpLight();
+        //阴影RT渲染应放到SetUpLight()对每个光源进行阴影生成过滤之后
+        _shadows.Render();
+
         
         _commandBuffer.EndSample(BufferName);
         
@@ -57,6 +61,12 @@ public class Lighting
         //cb可复用，所以清空。
         _commandBuffer.Clear();
         
+    }
+
+
+    public void CleanUp()
+    {
+        _shadows.CleanUp();
     }
 
     /// <summary>
@@ -104,5 +114,7 @@ public class Lighting
         _dirLightColors[index] = visibleLight.finalColor;
         //这里转换矩阵构建就不说了，参考TBN矩阵构建，带一句，是按照XZY轴的顺序构建的，所以正方向取Z轴就是第二列
         _dirLightDirections[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
+        //为该可见光存储阴影数据，如果满足条件的话
+        _shadows.ReserveDirectionalLightShadows(visibleLight.light, index);
     }
 }
