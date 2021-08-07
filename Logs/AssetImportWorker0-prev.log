@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/china_unity/release' branch; Version is '2020.3.8f1c1 (0b92326fa640) revision 758322'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home China; OS build 22000.65; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
+OS: 'Windows 10 Home China; OS build 22000.71; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ D:/Unity/project/SRPLearn
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-55590
+58359
 Successfully changed project path to: D:/Unity/project/SRPLearn
 D:/Unity/project/SRPLearn
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 21.26 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 22.40 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.8f1c1 (0b92326fa640)
 [Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Resources/UnitySubsystems
@@ -35,158 +35,51 @@ Initialize mono
 Mono path[0] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56460
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56400
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Editor/2020.3.8f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000720 seconds.
+Registered in 0.000668 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 22.06 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 23.55 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
 - Completed reload, in  0.645 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000700 seconds.
+Registered in 0.000563 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 21.63 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 25.30 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.697 seconds
+- Completed reload, in  0.783 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
-Refreshing native plugins compatible for Editor in 0.40 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1300 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 63.9 MB.
 System memory in use after: 63.9 MB.
 
 Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1746.
-Total: 1.484000 ms (FindLiveObjects: 0.136400 ms CreateObjectMapping: 0.039700 ms MarkObjects: 1.248800 ms  DeleteObjects: 0.058400 ms)
+Total: 2.315500 ms (FindLiveObjects: 0.171400 ms CreateObjectMapping: 0.051600 ms MarkObjects: 2.005700 ms  DeleteObjects: 0.085400 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/Shaders/FirstSRPShader.shader
-  artifactKey: Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/FirstSRPShader.shader using Guid(fcc5977319d64354183c4018698628d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47615545df2e28667a76e5cf6ecfd33f') in 0.053994 seconds
-  Import took 0.055894 seconds .
+  path: Assets/SEEDRP/Runtime/LightData/Lighting.cs
+  artifactKey: Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/SEEDRP/Runtime/LightData/Lighting.cs using Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6bc29fb7bfb943b2204db0bed30aaa4a') in 0.038325 seconds
+  Import took 0.040882 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 319.331120 seconds.
-  path: Assets/New Render Texture.renderTexture
-  artifactKey: Guid(fe2ab63af38fa8a4e9823028ae889a88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/New Render Texture.renderTexture using Guid(fe2ab63af38fa8a4e9823028ae889a88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31d7eb6c83a364dca4712c379eda5057') in 0.057823 seconds
-  Import took 0.059818 seconds .
+  Time since last request: 15.062848 seconds.
+  path: Assets/ShaderLibrary/BRDF.hlsl
+  artifactKey: Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ShaderLibrary/BRDF.hlsl using Guid(559909b236e199a43b8e506db8e4a4fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4d189806ab0929f96ffef516c2513a5a') in 0.019898 seconds
+  Import took 0.021548 seconds .
 
-========================================================================
-Received Import Request.
-  Time since last request: 0.669377 seconds.
-  path: Assets/New Render Texture.renderTexture
-  artifactKey: Guid(fe2ab63af38fa8a4e9823028ae889a88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/New Render Texture.renderTexture using Guid(fe2ab63af38fa8a4e9823028ae889a88) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31d7eb6c83a364dca4712c379eda5057') in 0.031012 seconds
-  Import took 0.033275 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 14137.403746 seconds.
-  path: Assets/Editor/CustomShaderGUI.cs
-  artifactKey: Guid(f8e29590a3e68a244925475e6931677e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Editor/CustomShaderGUI.cs using Guid(f8e29590a3e68a244925475e6931677e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95dc502d28934893040f0b801cef71dd') in 0.010131 seconds
-  Import took 0.013511 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 31.896544 seconds.
-  path: Assets/SEEDRP/Runtime/CustomCameraRenderer.cs
-  artifactKey: Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/CustomCameraRenderer.cs using Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dad71a2268f231e11012f1983e45af62') in 0.006848 seconds
-  Import took 0.008530 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.002217 seconds.
-  path: Assets/SEEDRP/Runtime/CustomCameraRenderer.cs
-  artifactKey: Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/CustomCameraRenderer.cs using Guid(bbe157d9ad011c3449c02867c5e74306) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dad71a2268f231e11012f1983e45af62') in 0.002465 seconds
-  Import took 0.004130 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 1539.706595 seconds.
-  path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
-  artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81f4731b4ca21c19392d4acd12d7a4d5') in 0.008841 seconds
-  Import took 0.010863 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000690 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.638 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 66.3 MB.
-System memory in use after: 66.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1754.
-Total: 1.255300 ms (FindLiveObjects: 0.114900 ms CreateObjectMapping: 0.033000 ms MarkObjects: 1.086900 ms  DeleteObjects: 0.019400 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 7345.388671 seconds.
-  path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
-  artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da6e0f571f7437e52d39530947267750') in 0.003789 seconds
-  Import took 0.005291 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000694 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.624 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 66.3 MB.
-System memory in use after: 66.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1757.
-Total: 1.239700 ms (FindLiveObjects: 0.117500 ms CreateObjectMapping: 0.033300 ms MarkObjects: 1.068900 ms  DeleteObjects: 0.018800 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000742 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.35 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.677 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.27 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 66.3 MB.
-System memory in use after: 66.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1760.
-Total: 1.430800 ms (FindLiveObjects: 0.126600 ms CreateObjectMapping: 0.037500 ms MarkObjects: 1.242900 ms  DeleteObjects: 0.022600 ms)
-
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

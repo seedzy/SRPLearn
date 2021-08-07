@@ -75,7 +75,7 @@ public class Shadows
             FilterMode.Bilinear,
             RenderTextureFormat.Shadowmap);
         
-        //设置一下这张临时RT的去向，至于详细内容看下注释吧。。。。。虽然感觉一知半解的样子
+        //设置一下RT的渲染目标为RT(其实就是把RT的数据保留下来)而不是framebuffer，至于详细内容看下注释吧。。。。。虽然感觉一知半解的样子
         //PS ： 现在这个大概意思就是，加载的时候，直接加载就行，不需要考虑其他的，dontcare
         //保存的时候，你给我保存就完事了
         _commandBuffer.SetRenderTarget(
@@ -86,7 +86,47 @@ public class Shadows
         //这里清理深度缓冲，只用清这个就行，毕竟这张RT只是存个灯光空间深度信息
         //PS ： 上一步dontCare的原因就是这里已经清过了
         _commandBuffer.ClearRenderTarget(true, false, Color.clear);
+        _commandBuffer.BeginSample(BufferName);
         ExecuteBuffer();
+
+        //遍历每一个可产生阴影的光源渲染阴影
+        for (int i = 0; i < _shadowedDirectionalLightCount; i++)
+        {
+            RenderDirectionalLightShadow(i, atlasSize);
+        }
+        
+        _commandBuffer.EndSample(BufferName);
+        ExecuteBuffer();
+    }
+
+    /// <summary>
+    /// 渲染单个光源阴影
+    /// </summary>
+    /// <param name="index">光源索引</param>
+    /// <param name="tileSize">该光源的阴影贴图在阴影图集中所占的图块大小</param>
+    void RenderDirectionalLightShadow(int index, int tileSize)
+    {
+        ShadowedDirectionalLight light = _shadowedDirectionalLights[index];
+        //创建阴影设置对象？？
+        var shadowSetting = new ShadowDrawingSettings(_cullingResults, light.visibleLightIndex);
+
+        //阴影贴图本质也是一张深度图，它记录了从光源位置出发，到能看到的场景中距离它最近的表面位置（深度信息）。
+        //但是方向光并没有一个真实位置，我们要做地是找出与光的方向匹配的视图和投影矩阵，并给我们一个裁剪空间的立方体
+        //该立方体与包含光源阴影的摄影机的可见区域重叠，这些数据的获取我们不用自己去实现，
+        //可以直接调用 cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives方法，它需要9个参数。
+        //第1个是可见光的索引，第 2 、 3 、 4 个参数用于设置阴影级联数据，后面我们会处理它，第 5个参数是阴影贴图的尺寸，
+        //第 6 个参数是阴影近平面偏移，我们先忽略它．
+        //最后三个参数都是输出参数，一个是视图矩阵，一个是投影矩阵，一个是shadowSplitdata 对象，它描述有关给定阴影分割（如定向级联）的剔除信息。
+        _cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives(
+            light.visibleLightIndex, 0, 1, Vector3.zero, tileSize, 0,
+            out Matrix4x4 viewMatrix, out Matrix4x4 projMatrix, out ShadowSplitData splitData);
+        //ShadowSplitData描述有关给定阴影分割（如定向级联）的剔除信息。https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ShadowSplitData.html
+        shadowSetting.splitData = splitData;
+        _commandBuffer.SetViewProjectionMatrices(viewMatrix, projMatrix);
+        //执行缓冲区命令并绘制阴影
+        ExecuteBuffer();
+        //PS:DrawShadows只渲染shader中带shadowCasterPass的物体
+        _context.DrawShadows(ref shadowSetting);
     }
 
     /// <summary>
