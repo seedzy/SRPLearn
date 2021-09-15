@@ -26,13 +26,15 @@ public class Lighting
     };
 
     //创建两个shaderid标识，用于把数据存储到指定变量
-    private static int _dirLightCountId = Shader.PropertyToID("_DirLightCount");
-    private static int _dirLightColorId = Shader.PropertyToID("_DirLightColor");
-    private static int _dirLightDirectionId = Shader.PropertyToID("_DirLightDirection");
+    private static int _dirLightCountId = Shader.PropertyToID("_DirectionalLightCount");
+    private static int _dirLightColorId = Shader.PropertyToID("_DirectionalLightColor");
+    private static int _dirLightDirectionId = Shader.PropertyToID("_DirectionalLightDirection");
+    private static int _dirLightShadowDataId = Shader.PropertyToID("_DirectionalLightShadowData");
     
     //存储可见关数据
     private Vector4[] _dirLightColors = new Vector4[MaxDirLightCount];
     private Vector4[] _dirLightDirections = new Vector4[MaxDirLightCount];
+    private Vector4[] _dirLightShadowData = new Vector4[MaxDirLightCount];
 
     /// <summary>
     /// lighting里的shadows
@@ -63,12 +65,20 @@ public class Lighting
         
     }
 
-
-    public void CleanUp()
+    /// <summary>
+    /// 从unity读取可见光数据
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="visibleLight"></param>
+    void GetDirLightData(int index,ref VisibleLight visibleLight)
     {
-        _shadows.CleanUp();
+        _dirLightColors[index] = visibleLight.finalColor;
+        //这里转换矩阵构建就不说了，参考TBN矩阵构建，带一句，是按照XZY轴的顺序构建的，所以正方向取Z轴就是第二列
+        _dirLightDirections[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
+        //为该可见光存储阴影数据，如果满足条件的话
+        _dirLightShadowData[index] =_shadows.ReserveDirectionalLightShadows(visibleLight.light, index);
     }
-
+    
     /// <summary>
     /// 获取并发送多个光源数据
     /// </summary>
@@ -91,7 +101,7 @@ public class Lighting
 
             if (visibleLight.lightType == LightType.Directional)
             {
-                GetDirLight(dirLightCount++, ref visibleLight);
+                GetDirLightData(dirLightCount++, ref visibleLight);
             }
             //只支持4个平行光
             if (dirLightCount >= MaxDirLightCount)
@@ -101,20 +111,13 @@ public class Lighting
         _commandBuffer.SetGlobalInt(_dirLightCountId, dirLightCount);
         _commandBuffer.SetGlobalVectorArray(_dirLightColorId, _dirLightColors);
         _commandBuffer.SetGlobalVectorArray(_dirLightDirectionId, _dirLightDirections);
+        _commandBuffer.SetGlobalVectorArray(_dirLightShadowDataId, _dirLightShadowData);
         
     }
-
-    /// <summary>
-    /// 从unity读取可见光数据
-    /// </summary>
-    /// <param name="index"></param>
-    /// <param name="visibleLight"></param>
-    void GetDirLight(int index,ref VisibleLight visibleLight)
+    
+    
+    public void CleanUp()
     {
-        _dirLightColors[index] = visibleLight.finalColor;
-        //这里转换矩阵构建就不说了，参考TBN矩阵构建，带一句，是按照XZY轴的顺序构建的，所以正方向取Z轴就是第二列
-        _dirLightDirections[index] = -visibleLight.localToWorldMatrix.GetColumn(2);
-        //为该可见光存储阴影数据，如果满足条件的话
-        _shadows.ReserveDirectionalLightShadows(visibleLight.light, index);
+        _shadows.CleanUp();
     }
 }

@@ -67,7 +67,7 @@ Shader "SRP/FirstSRPShader"
                 //通过顶点输入结构获取其中渲染对象的索引ID并将其存储到其他实例依赖的全局静态变量中(GPU instancing)
                 UNITY_SETUP_INSTANCE_ID(v);
                 v2f o;
-                o.vertex = TransformObjectToHClip(v.vertex);
+                o.vertex = TransformObjectToHClip(v.vertex.xyz);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }

@@ -1,9 +1,9 @@
 #ifndef CUSTOM_BRDF_INCLUDE
 #define CUSTOM_BRDF_INCLUDE
 
-#include "Assets/ShaderLibrary/Surface.hlsl"
-#include "Assets/ShaderLibrary/Common.hlsl"
-#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl"
+#include "Assets/SEEDRP/ShaderLibrary/Surface.hlsl"
+#include "Assets/SEEDRP/ShaderLibrary/Common.hlsl"
+
 
 /////////////////////////////////////////////////////////////////////////////////////////
 ///函数流程是按照从上到下初始化数据->得到最终颜色的

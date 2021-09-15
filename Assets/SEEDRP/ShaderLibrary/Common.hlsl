@@ -1,6 +1,6 @@
 #ifndef CUSTOM_COMMON_INCLUDE
 #define CUSTOM_COMMON_INCLUDE
-
+#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/CommonMaterial.hlsl"
 /// <summary>
 /// 求平方，别问，问就是pow太费
 /// </summary>

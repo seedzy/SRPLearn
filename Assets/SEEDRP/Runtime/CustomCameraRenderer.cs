@@ -83,7 +83,6 @@ public partial class CustomCameraRenderer
         //渲染开始和结束时处理commandBuffer sampler以便在profile和Frame Debug中显示渲染流程的一些信息——————
         //只是用于调试
         _commandBuffer.BeginSample(SampleCBufferName);
-        
         //beginSample也属于commandBuffer的命令，要使其生效则必须手动执行
         ExecuteCommandBuffer();
 
@@ -99,8 +98,6 @@ public partial class CustomCameraRenderer
         
         SetUpCamera();
         
-        
-
         DrawVisibleGeometry(useGPUInstancing, useDynamicBatching);
         
         DrawUnsupportedShaders();

@@ -33,13 +33,12 @@ Shader "SRP/Lit"
             #pragma shader_feature _PREMULTIPLY_ALPHA
             #pragma shader_feature _ALPHA_Clip
             
-            #include "Assets/ShaderLibrary/Input.hlsl"
-            #include "Assets/ShaderLibrary/Surface.hlsl"
-            #include "Assets/ShaderLibrary/Lighting.hlsl"
+            #include "Assets/SEEDRP/ShaderLibrary/Lighting.hlsl"
             
             //SRP Batcher
             // CBUFFER_START(UnityPerMaterial)
             // float4 _MainTex_ST;
+            // half4 _BaseColor;
             // CBUFFER_END
 
             //GPU instancing
@@ -80,9 +79,9 @@ Shader "SRP/Lit"
                 UNITY_SETUP_INSTANCE_ID(v);
                 UNITY_TRANSFER_INSTANCE_ID(v, o);
                 
-                o.pos = TransformObjectToHClip(v.vertex);
+                o.pos = TransformObjectToHClip(v.vertex.xyz);
                 o.normalWS = TransformObjectToWorldNormal(v.nomral);
-                o.wordPos = TransformObjectToWorld(v.vertex);
+                o.wordPos = TransformObjectToWorld(v.vertex.xyz);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
@@ -91,19 +90,21 @@ Shader "SRP/Lit"
             {
                 UNITY_SETUP_INSTANCE_ID(i);
                 
-                // sample the texture
-                //half4 col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
+                half4 color = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv);
 
                 //instancing需要通过这个宏来访问静态缓冲区的属性
-                half4 col = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
+                half4 baseColor = UNITY_ACCESS_INSTANCED_PROP(UnityPerMaterial, _BaseColor);
+
+                half4 albedo = color * baseColor;
 
                 float3 viewDir = normalize(_WordSpaceCameraPos - i.wordPos);
 
                 //设置表面属性
                 Surface surface;
+                surface.positionWS = i.wordPos;
                 surface.normalWS = normalize(i.normalWS);
-                surface.color = col.rgb;
-                surface.alpha = col.a;
+                surface.color = albedo.rgb;
+                surface.alpha = albedo.a;
                 surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Metallic);
                 surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Smoothness);
                 surface.viewDir = viewDir;
@@ -124,6 +125,23 @@ Shader "SRP/Lit"
                 
                 return half4(finCol, surface.alpha);
             }
+            ENDHLSL
+        }
+        
+        Pass
+        {
+            Tags {"LightMode" = "ShadowCaster"}
+            ColorMask 0
+            
+            HLSLPROGRAM
+
+            #pragma target 3.5
+            #pragma shader_feature _CLIPPING
+            #pragma multi_compile_instancing
+            #pragma vertex ShadowCasterPassVertex
+            #pragma fragment ShadowCasterPassFragment
+            #include "ShadowCasterPass.hlsl"
+            
             ENDHLSL
         }
     }

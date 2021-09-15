@@ -26,11 +26,21 @@ public class ShadowSettings
     public struct Directional
     {
         public TextureSize atlasSize;
+
+        [Header("级联数量")]
+        [Range(1, 4)] public int cascadeCount;
+
+        [Header("级联比例")] [Range(0f, 1f)] public float cascadeRatio1;
+        [Range(0f, 1f)] public float cascadeRatio2, cascadeRatio3;
     }
 
     public Directional directional = new Directional()
     {
-        atlasSize = TextureSize._1024
+        atlasSize = TextureSize._1024,
+        cascadeCount = 4,
+        cascadeRatio1 = 0.1f,
+        cascadeRatio2 = 0.25f,
+        cascadeRatio3 = 0.5f
     };
 }
 

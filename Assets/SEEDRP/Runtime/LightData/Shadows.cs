@@ -6,18 +6,18 @@ using UnityEngine.Rendering;
 public class Shadows
 {
     /// <summary>
-    /// 后面再看看为什么管这叫阴影图集吧
-    /// </summary>
-    private static int dirShadowAtlasId = Shader.PropertyToID("_DirectionalShadowAtlas");
-    
-    
-    /// <summary>
     /// 限制产生阴影的最大直接光照
     /// </summary>
-    private const int MaxShadowedDirectionalLightCount = 2;
+    private const int MaxShadowedDirectionalLightCount = 4;
 
+    private const int MaxCascades = 4;
+
+    private static int dirShadowAtlasId      = Shader.PropertyToID("_DirectionalShadowAtlas");
+    private static int dirShadowVPMatricesID = Shader.PropertyToID("_DirectionalShadowVPMatrices");
+
+    private static Matrix4x4[] dirShadowVPMatrices = new Matrix4x4[MaxShadowedDirectionalLightCount * MaxCascades];
     /// <summary>
-    /// 记录可产生阴影的直接光照，以及其在可见光序列中的序号
+    /// 记录可产生阴影的直接光照结构，以及其在可见光序列中的序号
     /// 不记录的话，没办法知道能产生阴影的灯光是哪一个
     /// </summary>
     struct ShadowedDirectionalLight
@@ -89,12 +89,18 @@ public class Shadows
         _commandBuffer.BeginSample(BufferName);
         ExecuteBuffer();
 
+        //根据产生阴影的光源数量决定图块分割系数
+        //光源大于1时就把阴影图集拆成四份
+        int split = _shadowedDirectionalLightCount <= 1 ? 1 : 2;
+        atlasSize /= split;
+        
         //遍历每一个可产生阴影的光源渲染阴影
         for (int i = 0; i < _shadowedDirectionalLightCount; i++)
         {
-            RenderDirectionalLightShadow(i, atlasSize);
+            RenderDirectionalLightShadow(i, split, atlasSize);
         }
         
+        _commandBuffer.SetGlobalMatrixArray(dirShadowVPMatricesID, dirShadowVPMatrices);
         _commandBuffer.EndSample(BufferName);
         ExecuteBuffer();
     }
@@ -103,8 +109,9 @@ public class Shadows
     /// 渲染单个光源阴影
     /// </summary>
     /// <param name="index">光源索引</param>
+    /// <param name="split">图块分割系数</param>
     /// <param name="tileSize">该光源的阴影贴图在阴影图集中所占的图块大小</param>
-    void RenderDirectionalLightShadow(int index, int tileSize)
+    void RenderDirectionalLightShadow(int index, int split, int tileSize)
     {
         ShadowedDirectionalLight light = _shadowedDirectionalLights[index];
         //创建阴影设置对象？？
@@ -114,7 +121,7 @@ public class Shadows
         //但是方向光并没有一个真实位置，我们要做地是找出与光的方向匹配的视图和投影矩阵，并给我们一个裁剪空间的立方体
         //该立方体与包含光源阴影的摄影机的可见区域重叠，这些数据的获取我们不用自己去实现，
         //可以直接调用 cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives方法，它需要9个参数。
-        //第1个是可见光的索引，第 2 、 3 、 4 个参数用于设置阴影级联数据，后面我们会处理它，第 5个参数是阴影贴图的尺寸，
+        //第1个是可见光的索引，第 2 、 3 、 4 个参数用于设置阴影级联数据，第 5个参数是阴影贴图的尺寸，
         //第 6 个参数是阴影近平面偏移，我们先忽略它．
         //最后三个参数都是输出参数，一个是视图矩阵，一个是投影矩阵，一个是shadowSplitdata 对象，它描述有关给定阴影分割（如定向级联）的剔除信息。
         _cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives(
@@ -122,11 +129,66 @@ public class Shadows
             out Matrix4x4 viewMatrix, out Matrix4x4 projMatrix, out ShadowSplitData splitData);
         //ShadowSplitData描述有关给定阴影分割（如定向级联）的剔除信息。https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ShadowSplitData.html
         shadowSetting.splitData = splitData;
+
+        dirShadowVPMatrices[index] =
+            convertToAtlasMatrix(projMatrix * viewMatrix, SetTileViewport(index, split, tileSize), split);
         _commandBuffer.SetViewProjectionMatrices(viewMatrix, projMatrix);
+        
         //执行缓冲区命令并绘制阴影
         ExecuteBuffer();
         //PS:DrawShadows只渲染shader中带shadowCasterPass的物体
         _context.DrawShadows(ref shadowSetting);
+    }
+
+    /// <summary>
+    /// 修改渲染视窗，类似修改摄像机的渲染大小
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="split"></param>
+    /// <param name="tileSize"></param>
+    /// <returns>返回当前index的图块UV相对于完整图块UV的偏移</returns>
+    Vector2 SetTileViewport(int index, int split, int tileSize)
+    {
+        Vector2 offset = new Vector2(index % split, index / split);
+        _commandBuffer.SetViewport(new Rect(offset.x * tileSize, offset.y * tileSize, tileSize, tileSize));
+        return offset;
+    }
+
+    /// <summary>
+    /// 将完整图块VP矩阵转换为正确对应当前index图块的VP矩阵
+    /// </summary>
+    /// <param name="matrix"></param>
+    /// <param name="offset"></param>
+    /// <param name="split"></param>
+    /// <returns></returns>
+    Matrix4x4 convertToAtlasMatrix(Matrix4x4 matrix, Vector2 offset, float split)
+    {
+        //这里把z翻转以适应不同平台，z就是矩阵的第三行
+        if (SystemInfo.usesReversedZBuffer)
+        {
+            matrix.m20 = -matrix.m20;
+            matrix.m21 = -matrix.m21;
+            matrix.m22 = -matrix.m22;
+            matrix.m23 = -matrix.m23;
+        }
+
+        //下面这一堆是提取了一下矩阵缩放0.5倍和矩阵平移0.5两步的有效计算，如果直接用矩阵计算会有很多和0的乘法加法的无效计算
+        //虽然urp也矩阵直接乘了
+        float scale = 1f / split;
+        matrix.m00 = (0.5f * (matrix.m00 + matrix.m30) + offset.x * matrix.m30) * scale;
+        matrix.m01 = (0.5f * (matrix.m01 + matrix.m31) + offset.x * matrix.m31) * scale;
+        matrix.m02 = (0.5f * (matrix.m02 + matrix.m32) + offset.x * matrix.m32) * scale;
+        matrix.m03 = (0.5f * (matrix.m03 + matrix.m33) + offset.x * matrix.m33) * scale;
+        matrix.m10 = (0.5f * (matrix.m10 + matrix.m30) + offset.y * matrix.m30) * scale;
+        matrix.m11 = (0.5f * (matrix.m11 + matrix.m31) + offset.y * matrix.m31) * scale;
+        matrix.m12 = (0.5f * (matrix.m12 + matrix.m32) + offset.y * matrix.m32) * scale;
+        matrix.m13 = (0.5f * (matrix.m13 + matrix.m33) + offset.y * matrix.m33) * scale;
+        matrix.m20 =  0.5f * (matrix.m20 + matrix.m30);
+        matrix.m21 =  0.5f * (matrix.m21 + matrix.m31);
+        matrix.m22 =  0.5f * (matrix.m22 + matrix.m32);
+        matrix.m23 =  0.5f * (matrix.m23 + matrix.m33);
+        
+        return matrix;
     }
 
     /// <summary>
@@ -158,7 +220,7 @@ public class Shadows
     /// </summary>
     /// <param name="light"></param>
     /// <param name="visibleLightIndex"></param>
-    public void ReserveDirectionalLightShadows(Light light, int visibleLightIndex)
+    public Vector2 ReserveDirectionalLightShadows(Light light, int visibleLightIndex)
     {
         //过滤一道光源，保证存下的是能产生阴影的光源，且距离合适
         if (_shadowedDirectionalLightCount < MaxShadowedDirectionalLightCount &&
@@ -166,11 +228,13 @@ public class Shadows
             light.shadowStrength > 0f &&
             _cullingResults.GetShadowCasterBounds(visibleLightIndex, out Bounds bounds))
         {
-            _shadowedDirectionalLights[_shadowedDirectionalLightCount++] = new ShadowedDirectionalLight()
+            _shadowedDirectionalLights[_shadowedDirectionalLightCount] = new ShadowedDirectionalLight()
             {
                 visibleLightIndex = visibleLightIndex
             };
+            return new Vector2(light.shadowStrength, _shadowedDirectionalLightCount++);
         }
+        return  Vector2.zero;
     }
 
 }
