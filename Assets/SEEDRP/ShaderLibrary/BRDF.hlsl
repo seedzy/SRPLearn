@@ -1,8 +1,8 @@
 #ifndef CUSTOM_BRDF_INCLUDE
 #define CUSTOM_BRDF_INCLUDE
 
-#include "Assets/SEEDRP/ShaderLibrary/Surface.hlsl"
-#include "Assets/SEEDRP/ShaderLibrary/Common.hlsl"
+#include "Surface.hlsl"
+#include "Common.hlsl"
 
 
 /////////////////////////////////////////////////////////////////////////////////////////

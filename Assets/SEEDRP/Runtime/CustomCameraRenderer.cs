@@ -74,7 +74,7 @@ public partial class CustomCameraRenderer
         /////剔除/////////////////////
         if (!Cull(shadowSettings.maxDistance))
         {
-            Debug.LogError("剔除失败");
+            Debug.LogError("剔除");
             return;
         }
         
@@ -94,7 +94,7 @@ public partial class CustomCameraRenderer
         
         //提交命令前结束对渲染commandBuffer的调试sample
         _commandBuffer.EndSample(SampleCBufferName);
-        ExecuteCommandBuffer();
+        //ExecuteCommandBuffer();
         
         SetUpCamera();
         
@@ -109,8 +109,6 @@ public partial class CustomCameraRenderer
         _lighting.CleanUp();
         //////提交/////////
         SubmitRenderOrder();
-        
-        
     }
 
     

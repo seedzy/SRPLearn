@@ -26,13 +26,13 @@ public class Lighting
     };
 
     //创建两个shaderid标识，用于把数据存储到指定变量
-    private static int _dirLightCountId = Shader.PropertyToID("_DirectionalLightCount");
-    private static int _dirLightColorId = Shader.PropertyToID("_DirectionalLightColor");
-    private static int _dirLightDirectionId = Shader.PropertyToID("_DirectionalLightDirection");
+    private static int _dirLightCountId      = Shader.PropertyToID("_DirectionalLightCount");
+    private static int _dirLightColorId      = Shader.PropertyToID("_DirectionalLightColor");
+    private static int _dirLightDirectionId  = Shader.PropertyToID("_DirectionalLightDirection");
     private static int _dirLightShadowDataId = Shader.PropertyToID("_DirectionalLightShadowData");
     
     //存储可见关数据
-    private Vector4[] _dirLightColors = new Vector4[MaxDirLightCount];
+    private Vector4[] _dirLightColors     = new Vector4[MaxDirLightCount];
     private Vector4[] _dirLightDirections = new Vector4[MaxDirLightCount];
     private Vector4[] _dirLightShadowData = new Vector4[MaxDirLightCount];
 

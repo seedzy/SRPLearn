@@ -32,6 +32,8 @@ public class ShadowSettings
 
         [Header("级联比例")] [Range(0f, 1f)] public float cascadeRatio1;
         [Range(0f, 1f)] public float cascadeRatio2, cascadeRatio3;
+
+        public Vector3 CascadesRatios => new Vector3(cascadeRatio1, cascadeRatio2, cascadeRatio3);
     }
 
     public Directional directional = new Directional()

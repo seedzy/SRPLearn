@@ -2,8 +2,8 @@
 #define CUSTOM_LIGHTING_INCLUDE
 
 //#include "Assets/ShaderLibrary/Surface.hlsl"
-#include "Assets/SEEDRP/ShaderLibrary/Light.hlsl"
-#include "Assets/SEEDRP/ShaderLibrary/BRDF.hlsl"
+#include "Light.hlsl"
+#include "BRDF.hlsl"
 
 half3 GetLighting(Surface surface, BRDF brdf, Light light)
 {
@@ -13,10 +13,11 @@ half3 GetLighting(Surface surface, BRDF brdf, Light light)
 //重载方便处理多个光源
 float3 GetLighting(Surface surface, BRDF brdf)
 {
-    half3 col;
+    ShadowData shadowData = GetShadowData(surface);
+    half3 col = 0;
     for(int i = 0; i < GetDirLightCount(); i++)
     {
-        col += GetLighting(surface, brdf, GetDirLight(i, surface));
+        col += GetLighting(surface, brdf, GetDirLight(i, surface, shadowData));
     }
     return  col;
 }

@@ -9,4 +9,12 @@ float Square(float v)
     return v * v;
 }
 
+/// <summary>
+/// 计算两点间距离的平方
+/// </summary>
+float DistanceSquared(float3 A, float3 B)
+{
+    return dot(A - B, A - B);
+}
+
 #endif

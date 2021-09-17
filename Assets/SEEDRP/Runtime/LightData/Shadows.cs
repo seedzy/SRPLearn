@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class Shadows
 {
@@ -12,10 +13,18 @@ public class Shadows
 
     private const int MaxCascades = 4;
 
-    private static int dirShadowAtlasId      = Shader.PropertyToID("_DirectionalShadowAtlas");
-    private static int dirShadowVPMatricesID = Shader.PropertyToID("_DirectionalShadowVPMatrices");
+    private static int dirShadowAtlasId        = Shader.PropertyToID("_DirectionalShadowAtlas");
+    private static int dirShadowVPMatricesId   = Shader.PropertyToID("_DirectionalShadowVPMatrices");
+    private static int cascadeCoundId          = Shader.PropertyToID("_CascadeCount");
+    private static int cascadeCullingSpheresId = Shader.PropertyToID("_CascadeCullingSpheres");
+    private static int shadowDistanceId        = Shader.PropertyToID("_MaxShadowDistance");
 
+    //每个级联阴影有一个矩阵，每个光源阴影有maxCascades个阴影级联，所以共计MaxShadowedDirectionalLightCount * MaxCascades个VP矩阵
     private static Matrix4x4[] dirShadowVPMatrices = new Matrix4x4[MaxShadowedDirectionalLightCount * MaxCascades];
+    /// <summary>
+    /// 记录光照包围球数据，xyz为原点坐标，w为半径。。为什么是MaxCascades个
+    /// </summary>
+    private static Vector4[] cascadeCullingSpheres = new Vector4[MaxCascades];
     /// <summary>
     /// 记录可产生阴影的直接光照结构，以及其在可见光序列中的序号
     /// 不记录的话，没办法知道能产生阴影的灯光是哪一个
@@ -66,7 +75,6 @@ public class Shadows
         int atlasSize = (int)_shadowSettings.directional.atlasSize;
         
         //创建一张临时的RT，参数就是些RT用到的shaderid，大小，深度缓冲用几位什么的
-        //PS ： 这个shaderId还充当了该临时RT的nameID？这什么操作
         _commandBuffer.GetTemporaryRT(
             dirShadowAtlasId, 
             atlasSize, 
@@ -91,7 +99,11 @@ public class Shadows
 
         //根据产生阴影的光源数量决定图块分割系数
         //光源大于1时就把阴影图集拆成四份
-        int split = _shadowedDirectionalLightCount <= 1 ? 1 : 2;
+        //一张shadowmap最多拆成4个灯光的阴影图，每个阴影图又可以拆成4个级联，
+        //所以最终最大情况下，一张shadowmap拆成16份
+        //PS:分的越多质量越差
+        int tiles = _shadowedDirectionalLightCount * _shadowSettings.directional.cascadeCount;
+        int split = tiles <= 1 ? 1 : tiles <= 4 ? 2 : 4;
         atlasSize /= split;
         
         //遍历每一个可产生阴影的光源渲染阴影
@@ -100,7 +112,10 @@ public class Shadows
             RenderDirectionalLightShadow(i, split, atlasSize);
         }
         
-        _commandBuffer.SetGlobalMatrixArray(dirShadowVPMatricesID, dirShadowVPMatrices);
+        _commandBuffer.SetGlobalInt(cascadeCoundId, _shadowSettings.directional.cascadeCount);
+        _commandBuffer.SetGlobalVectorArray(cascadeCullingSpheresId, cascadeCullingSpheres);
+        _commandBuffer.SetGlobalMatrixArray(dirShadowVPMatricesId, dirShadowVPMatrices);
+        _commandBuffer.SetGlobalFloat(shadowDistanceId, _shadowSettings.maxDistance);
         _commandBuffer.EndSample(BufferName);
         ExecuteBuffer();
     }
@@ -117,27 +132,43 @@ public class Shadows
         //创建阴影设置对象？？
         var shadowSetting = new ShadowDrawingSettings(_cullingResults, light.visibleLightIndex);
 
-        //阴影贴图本质也是一张深度图，它记录了从光源位置出发，到能看到的场景中距离它最近的表面位置（深度信息）。
-        //但是方向光并没有一个真实位置，我们要做地是找出与光的方向匹配的视图和投影矩阵，并给我们一个裁剪空间的立方体
-        //该立方体与包含光源阴影的摄影机的可见区域重叠，这些数据的获取我们不用自己去实现，
-        //可以直接调用 cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives方法，它需要9个参数。
-        //第1个是可见光的索引，第 2 、 3 、 4 个参数用于设置阴影级联数据，第 5个参数是阴影贴图的尺寸，
-        //第 6 个参数是阴影近平面偏移，我们先忽略它．
-        //最后三个参数都是输出参数，一个是视图矩阵，一个是投影矩阵，一个是shadowSplitdata 对象，它描述有关给定阴影分割（如定向级联）的剔除信息。
-        _cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives(
-            light.visibleLightIndex, 0, 1, Vector3.zero, tileSize, 0,
-            out Matrix4x4 viewMatrix, out Matrix4x4 projMatrix, out ShadowSplitData splitData);
-        //ShadowSplitData描述有关给定阴影分割（如定向级联）的剔除信息。https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ShadowSplitData.html
-        shadowSetting.splitData = splitData;
+        int cascadeCount = _shadowSettings.directional.cascadeCount;
+        int tileOffset = index * cascadeCount;
+        Vector3 ratios = _shadowSettings.directional.CascadesRatios;
 
-        dirShadowVPMatrices[index] =
-            convertToAtlasMatrix(projMatrix * viewMatrix, SetTileViewport(index, split, tileSize), split);
-        _commandBuffer.SetViewProjectionMatrices(viewMatrix, projMatrix);
+        for (int i = 0; i < cascadeCount; i++)
+        {
+            //阴影贴图本质也是一张深度图，它记录了从光源位置出发，到能看到的场景中距离它最近的表面位置（深度信息）。
+            //但是方向光并没有一个真实位置，我们要做地是找出与光的方向匹配的视图和投影矩阵，并给我们一个裁剪空间的立方体
+            //该立方体与包含光源阴影的摄影机的可见区域重叠，这些数据的获取我们不用自己去实现，
+            //可以直接调用 cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives方法，它需要9个参数。
+            //第1个是可见光的索引，第 2 、 3 、 4 个参数用于设置阴影级联数据，第 5个参数是阴影贴图的尺寸，
+            //第 6 个参数是阴影近平面偏移，我们先忽略它．
+            //最后三个参数都是输出参数，一个是视图矩阵，一个是投影矩阵，一个是shadowSplitdata 对象，它描述有关给定阴影分割（如定向级联）的剔除信息。
+            _cullingResults.ComputeDirectionalShadowMatricesAndCullingPrimitives(
+                light.visibleLightIndex, i, cascadeCount, ratios, tileSize, 0,
+                out Matrix4x4 viewMatrix, out Matrix4x4 projMatrix, out ShadowSplitData splitData);
+            //ShadowSplitData描述有关给定阴影分割（如定向级联）的剔除信息,如光照包围球等。https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ShadowSplitData.html
+            if (index == 0)
+            {
+                cascadeCullingSpheres[i] = splitData.cullingSphere;
+                //包围球半径先平方。因为计算两点间距离时的开方操作开销很大，所以直接比较未开方的结果
+                cascadeCullingSpheres[i].w *= cascadeCullingSpheres[i].w;
+            }
+            shadowSetting.splitData = splitData;
+
+            int tileIndex = tileOffset + i;
+
+            dirShadowVPMatrices[tileIndex] =
+                convertToAtlasMatrix(projMatrix * viewMatrix, SetTileViewport(tileIndex, split, tileSize), split);
+            _commandBuffer.SetViewProjectionMatrices(viewMatrix, projMatrix);
+            
         
-        //执行缓冲区命令并绘制阴影
-        ExecuteBuffer();
-        //PS:DrawShadows只渲染shader中带shadowCasterPass的物体
-        _context.DrawShadows(ref shadowSetting);
+            //执行缓冲区命令并绘制阴影
+            ExecuteBuffer();
+            //PS:DrawShadows只渲染shader中带shadowCasterPass的物体
+            _context.DrawShadows(ref shadowSetting);
+        }
     }
 
     /// <summary>
@@ -232,7 +263,7 @@ public class Shadows
             {
                 visibleLightIndex = visibleLightIndex
             };
-            return new Vector2(light.shadowStrength, _shadowedDirectionalLightCount++);
+            return new Vector2(light.shadowStrength, _shadowSettings.directional.cascadeCount * _shadowedDirectionalLightCount++);
         }
         return  Vector2.zero;
     }

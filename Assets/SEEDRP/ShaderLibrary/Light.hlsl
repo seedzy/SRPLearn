@@ -1,8 +1,8 @@
 #ifndef CUSTOM_LIGHT_INCLUDE
 #define CUSTOM_LIGHT_INCLUDE
 
-#include "Assets/SEEDRP/ShaderLibrary/Input.hlsl"
-#include "Assets/SEEDRP/ShaderLibrary/Shadow.hlsl"
+#include "Input.hlsl"
+#include "Shadow.hlsl"
 
 #define MAX_DIRECTIONAL_LIGHT_COUNT 4
 
@@ -29,24 +29,24 @@ int GetDirLightCount()
 /// <summary>
 /// 获取指定索引的平行光的阴影数据
 /// </summary>
-DirectionalShadowData GetDirectionalLightShadowData(int lightIndex)
+DirectionalShadowData GetDirectionalLightShadowData(int lightIndex, ShadowData shadowData)
 {
     DirectionalShadowData data;
-    data.strength = _DirectionalLightShadowData[lightIndex].x;
-    data.tileIndex = _DirectionalLightShadowData[lightIndex].y;
+    data.strength = _DirectionalLightShadowData[lightIndex].x * shadowData.strength;
+    data.tileIndex = _DirectionalLightShadowData[lightIndex].y + shadowData.cascadeIndex;
     return data;
 }
 
 /// <summary>
 /// 获取指定索引的平行光
 /// </summary>
-Light GetDirLight(int index, Surface surface)
+Light GetDirLight(int index, Surface surface, ShadowData shadowData)
 {
     Light light;
     light.color = _DirectionalLightColor[index];
     light.direction = _DirectionalLightDirection[index];
 
-    DirectionalShadowData data = GetDirectionalLightShadowData(index);
+    DirectionalShadowData data = GetDirectionalLightShadowData(index, shadowData);
     light.attenuation = GetDirectionalShadowAttenuation(data, surface);
     
     return light;
