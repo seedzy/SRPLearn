@@ -10,6 +10,8 @@ struct Surface
     float  alpha;
     float  metallic;
     float  smoothness;
+    //View空间和摄像机的距离
+    float  depth;
     
 };
 

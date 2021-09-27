@@ -19,7 +19,9 @@ CBUFFER_START(_CustomShadows)
 float4x4 _DirectionalShadowVPMatrices[MAX_SHADOWED_DIRECTIONAL_LIGHT_COUNT * MAX_CASCADE_COUNT];
 int      _CascadeCount;
 float4   _CascadeCullingSpheres[MAX_CASCADE_COUNT];
-float    _MaxShadowDistance;
+float4   _CascadeData[MAX_CASCADE_COUNT];
+float    _CascadeFadeDistance;
+float4   _ShadowDistance;
 CBUFFER_END
 
 
@@ -36,13 +38,24 @@ struct DirectionalShadowData
 struct ShadowData
 {
     int cascadeIndex;
-    int strength;
+    float strength;
 };
+
+float GetFadeShadowStrength(float distance, float scale, float fade)
+{
+    //(1 - d / m) / f , fade = 1 / f
+    return saturate((1 - distance * scale) * fade);
+
+}
 
 ShadowData GetShadowData(Surface surface)
 {
     ShadowData data;
 
+    //避免出现超出包围球范围的阴影
+    data.strength = GetFadeShadowStrength(surface.depth, _ShadowDistance.x, _ShadowDistance.y);
+    //data.strength = surface.depth < _ShadowDistance.x ? 1 : 0;;
+    
     int i;
     for(i = 0; i < _CascadeCount; i++)
     {
@@ -50,11 +63,13 @@ ShadowData GetShadowData(Surface surface)
         //根据判断表面点与包围球的距离关系，决定该表面点阴影的取值
         float disSurfWithSph = DistanceSquared(surface.positionWS, sphere.xyz);
         if(disSurfWithSph < sphere.w)
+        {
+            if(i == _CascadeCount - 1)
+                data.strength *= GetFadeShadowStrength(disSurfWithSph, _CascadeData[i].x, _ShadowDistance.z);
             break;
+        }
     }
 
-    //避免出现超出包围球范围的阴影
-    data.strength = 1;
     if(i == _CascadeCount)
         data.strength = 0;
     
@@ -67,15 +82,16 @@ float SamplerDirectionalShadowAtlas(float3 posLightSpace)
     return SAMPLE_TEXTURE2D_SHADOW(_DirectionalShadowAtlas, SHADOW_SAMPLER, posLightSpace);
 }
 
-float GetDirectionalShadowAttenuation(DirectionalShadowData data, Surface surface)
+float GetDirectionalShadowAttenuation(DirectionalShadowData directionalData, ShadowData globleData, Surface surface)
 {
-    if(data.strength <= 0)
+    if(directionalData.strength <= 0)
         return 1;
-    
-    //采样点的WSpos转到directionalLight的裁切空间去采样阴影图集，获取阴影值
-    float3 position = mul(_DirectionalShadowVPMatrices[data.tileIndex], float4(surface.positionWS, 1)).xyz;
+
+    float3 normalBias = surface.normalWS * _CascadeData[globleData.cascadeIndex].y;
+    //采样点的WSpos,沿着法线方向偏移一个纹素的大小，转到directionalLight的裁切空间去采样阴影图集，获取阴影值
+    float3 position = mul(_DirectionalShadowVPMatrices[directionalData.tileIndex], float4(surface.positionWS + normalBias, 1)).xyz;
     float shadow = SamplerDirectionalShadowAtlas(position);
-    return lerp(1, shadow, data.strength);
+    return lerp(1, shadow, directionalData.strength);
 }
 
 

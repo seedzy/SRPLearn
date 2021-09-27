@@ -108,6 +108,7 @@ Shader "SRP/Lit"
                 surface.metallic = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Metallic);
                 surface.smoothness = UNITY_ACCESS_INSTANCED_PROP(UntiyPerMaterial, _Smoothness);
                 surface.viewDir = viewDir;
+                surface.depth = length(TransformWorldToView(i.wordPos));//-TransformWorldToView(i.wordPos).z;
 
                 //获得BRDF属性
             #if defined(_PREMULTIPLY_ALPHA)

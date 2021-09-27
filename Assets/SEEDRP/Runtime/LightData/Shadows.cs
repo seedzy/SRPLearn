@@ -1,8 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using Matrix4x4 = UnityEngine.Matrix4x4;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
+using Vector4 = UnityEngine.Vector4;
 
 public class Shadows
 {
@@ -17,7 +22,8 @@ public class Shadows
     private static int dirShadowVPMatricesId   = Shader.PropertyToID("_DirectionalShadowVPMatrices");
     private static int cascadeCoundId          = Shader.PropertyToID("_CascadeCount");
     private static int cascadeCullingSpheresId = Shader.PropertyToID("_CascadeCullingSpheres");
-    private static int shadowDistanceId        = Shader.PropertyToID("_MaxShadowDistance");
+    private static int cascadeDataId           = Shader.PropertyToID("CascadeData");
+    private static int shadowDistanceId        = Shader.PropertyToID("_ShadowDistance");
 
     //每个级联阴影有一个矩阵，每个光源阴影有maxCascades个阴影级联，所以共计MaxShadowedDirectionalLightCount * MaxCascades个VP矩阵
     private static Matrix4x4[] dirShadowVPMatrices = new Matrix4x4[MaxShadowedDirectionalLightCount * MaxCascades];
@@ -25,6 +31,12 @@ public class Shadows
     /// 记录光照包围球数据，xyz为原点坐标，w为半径。。为什么是MaxCascades个
     /// </summary>
     private static Vector4[] cascadeCullingSpheres = new Vector4[MaxCascades];
+    /// <summary>
+    /// 记录各级级联数据
+    /// x: 该级级联包围球半径的倒数
+    /// y: 该级级联的纹素大小
+    /// </summary>
+    private static Vector4[] cascadeData = new Vector4[MaxCascades];
     /// <summary>
     /// 记录可产生阴影的直接光照结构，以及其在可见光序列中的序号
     /// 不记录的话，没办法知道能产生阴影的灯光是哪一个
@@ -112,10 +124,16 @@ public class Shadows
             RenderDirectionalLightShadow(i, split, atlasSize);
         }
         
+        _commandBuffer.SetGlobalVectorArray(cascadeDataId, cascadeData);
         _commandBuffer.SetGlobalInt(cascadeCoundId, _shadowSettings.directional.cascadeCount);
         _commandBuffer.SetGlobalVectorArray(cascadeCullingSpheresId, cascadeCullingSpheres);
         _commandBuffer.SetGlobalMatrixArray(dirShadowVPMatricesId, dirShadowVPMatrices);
-        _commandBuffer.SetGlobalFloat(shadowDistanceId, _shadowSettings.maxDistance);
+        _commandBuffer.SetGlobalDepthBias(0,2);
+
+        float cascadeFade = 1f - _shadowSettings.directional.cascadeFadeDistance;
+        //传倒数，避免在shader里进行除法
+        //x: shadowDis, y: shadowFade, z:cascadeFade?????????
+        _commandBuffer.SetGlobalVector(shadowDistanceId, new Vector4(1f / _shadowSettings.maxDistance, 1f / _shadowSettings.distanceFade, 1f / 1f - cascadeFade * cascadeFade));
         _commandBuffer.EndSample(BufferName);
         ExecuteBuffer();
     }
@@ -151,16 +169,14 @@ public class Shadows
             //ShadowSplitData描述有关给定阴影分割（如定向级联）的剔除信息,如光照包围球等。https://docs.unity.cn/cn/2020.3/ScriptReference/Rendering.ShadowSplitData.html
             if (index == 0)
             {
-                cascadeCullingSpheres[i] = splitData.cullingSphere;
-                //包围球半径先平方。因为计算两点间距离时的开方操作开销很大，所以直接比较未开方的结果
-                cascadeCullingSpheres[i].w *= cascadeCullingSpheres[i].w;
+                SetCascadeData(i, splitData.cullingSphere, tileSize);
             }
             shadowSetting.splitData = splitData;
 
             int tileIndex = tileOffset + i;
 
             dirShadowVPMatrices[tileIndex] =
-                convertToAtlasMatrix(projMatrix * viewMatrix, SetTileViewport(tileIndex, split, tileSize), split);
+                ConvertToAtlasMatrix(projMatrix * viewMatrix, SetTileViewport(tileIndex, split, tileSize), split);
             _commandBuffer.SetViewProjectionMatrices(viewMatrix, projMatrix);
             
         
@@ -171,6 +187,18 @@ public class Shadows
         }
     }
 
+    void SetCascadeData(int index, Vector4 cullingSphere, float tileSize)
+    {
+        //最坏情况下shadowmap沿着纹素对角线方向采样，所以需要乘√2
+        float texelSize = 2 * cullingSphere.w / tileSize * 1.4142136f;
+        //包围球半径先平方。因为计算两点间距离时的开方操作开销很大，所以直接比较未开方的结果
+        cullingSphere.w *= cullingSphere.w;
+        cascadeCullingSpheres[index] = cullingSphere;
+        cascadeData[index] = new Vector4(
+            1f / cullingSphere.w,
+            texelSize);
+    }
+    
     /// <summary>
     /// 修改渲染视窗，类似修改摄像机的渲染大小
     /// </summary>
@@ -192,7 +220,7 @@ public class Shadows
     /// <param name="offset"></param>
     /// <param name="split"></param>
     /// <returns></returns>
-    Matrix4x4 convertToAtlasMatrix(Matrix4x4 matrix, Vector2 offset, float split)
+    Matrix4x4 ConvertToAtlasMatrix(Matrix4x4 matrix, Vector2 offset, float split)
     {
         //这里把z翻转以适应不同平台，z就是矩阵的第三行
         if (SystemInfo.usesReversedZBuffer)

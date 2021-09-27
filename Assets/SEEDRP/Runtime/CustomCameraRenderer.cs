@@ -41,21 +41,6 @@ public partial class CustomCameraRenderer
         name = _commandBufferName
     };
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /// <summary>
     /// 摄像机渲染Pipeline
     /// </summary>

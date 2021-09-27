@@ -1,6 +1,6 @@
 Using pre-set license
 Built from '2020.3/china_unity/release' branch; Version is '2020.3.8f1c1 (0b92326fa640) revision 758322'; Using compiler version '192528614'; Build Type 'Release'
-OS: 'Windows 10 Home China; OS build 22458.1000; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
+OS: 'Windows 10 Home China; OS build 22463.1000; Version 2009; 64bit' Language: 'zh' Physical Memory: 32480 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
 
  COMMAND LINE ARGUMENTS:
@@ -15,11 +15,11 @@ D:/Unity/project/SRPLearn
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51811
+55558
 Successfully changed project path to: D:/Unity/project/SRPLearn
 D:/Unity/project/SRPLearn
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 21.58 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 22.07 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.8f1c1 (0b92326fa640)
 [Subsystems] Discovering subsystems at path D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Resources/UnitySubsystems
@@ -30,263 +30,75 @@ Direct3D:
     Renderer: NVIDIA GeForce GTX 1650 SUPER (ID=0x2187)
     Vendor:   
     VRAM:     3955 MB
-    Driver:   27.21.14.6679
+    Driver:   30.0.14.7141
 Initialize mono
 Mono path[0] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/Managed'
 Mono path[1] = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Unity/Editor/2020.3.8f1c1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56760
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56728
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Unity/Editor/2020.3.8f1c1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.000623 seconds.
+Registered in 0.000721 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 21.60 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 22.00 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.177 seconds
+- Completed reload, in  1.297 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.000505 seconds.
+Registered in 0.000711 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 21.16 ms, found 0 plugins.
+Refreshing native plugins compatible for Editor in 21.87 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.680 seconds
+- Completed reload, in  0.711 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
-Refreshing native plugins compatible for Editor in 0.20 ms, found 0 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 1300 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 63.9 MB.
 System memory in use after: 64.0 MB.
 
 Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 1746.
-Total: 1.219800 ms (FindLiveObjects: 0.109300 ms CreateObjectMapping: 0.033800 ms MarkObjects: 1.037500 ms  DeleteObjects: 0.038600 ms)
+Total: 1.409300 ms (FindLiveObjects: 0.136200 ms CreateObjectMapping: 0.033800 ms MarkObjects: 1.187800 ms  DeleteObjects: 0.050700 ms)
 
 ========================================================================
 Received Import Request.
-  path: Assets/SEEDRP/New Custom Render Pipline Asset.asset
-  artifactKey: Guid(7f210fb08b628994cb0421412de4977d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/New Custom Render Pipline Asset.asset using Guid(7f210fb08b628994cb0421412de4977d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '422933856890826ba048bae569719ace') in 0.040237 seconds
-  Import took 0.041740 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 69.746661 seconds.
   path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
   artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '031a0a33e3a1ab7e1bbf00390da11bab') in 0.007702 seconds
-  Import took 0.009603 seconds .
+Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '482636cca20e681185ae9fe9b6f11c11') in 0.037700 seconds
+  Import took 0.039272 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.567763 seconds.
+  Time since last request: 924.982021 seconds.
   path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
   artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '031a0a33e3a1ab7e1bbf00390da11bab') in 0.001464 seconds
-  Import took 0.002992 seconds .
+Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e83e31f095efee32f4b66500034d19d') in 0.002787 seconds
+  Import took 0.004747 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.000687 seconds.
+Registered in 0.000655 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.709 seconds
-Platform modules already initialized, skipping
 Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1289 Unused Serialized files (Serialized files now loaded: 0)
+Mono: successfully reloaded assembly
+- Completed reload, in  0.666 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 63.2 MB.
 System memory in use after: 63.3 MB.
 
-Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 1749.
-Total: 1.624900 ms (FindLiveObjects: 0.120300 ms CreateObjectMapping: 0.033900 ms MarkObjects: 1.224800 ms  DeleteObjects: 0.244900 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 6649.302108 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Light.hlsl
-  artifactKey: Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Light.hlsl using Guid(4375f2e99d9170640a1ff13468fdd465) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5d81453058440fde5bef28619dae612b') in 0.026789 seconds
-  Import took 0.028966 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000715 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.749 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.22 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.3 MB.
-System memory in use after: 63.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1752.
-Total: 1.272300 ms (FindLiveObjects: 0.119600 ms CreateObjectMapping: 0.035700 ms MarkObjects: 1.098500 ms  DeleteObjects: 0.017600 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 163.773683 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6770069338309bfe17ef2caeeb48d450') in 0.015973 seconds
-  Import took 0.017642 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 72.985412 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67bb1f76b258a8f155345dd26ff9139b') in 0.003475 seconds
-  Import took 0.005816 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 806.428164 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee837f5ba59836dac5231513cfbd3f5c') in 0.008128 seconds
-  Import took 0.010339 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 120.568913 seconds.
-  path: Assets/Shaders/Light/ShadowCasterPass.hlsl
-  artifactKey: Guid(0118d7d6174d2034eb28d5ecc5ff50c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/Light/ShadowCasterPass.hlsl using Guid(0118d7d6174d2034eb28d5ecc5ff50c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '725545430dc2ee7352e3f7fd1ab8cdc9') in 0.007983 seconds
-  Import took 0.009806 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 626.425732 seconds.
-  path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
-  artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b06f22694ad304c3d5683fb730b5c9') in 0.007554 seconds
-  Import took 0.009676 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.018308 seconds.
-  path: Assets/SEEDRP/Runtime/LightData/Shadows.cs
-  artifactKey: Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Shadows.cs using Guid(c8ef779bf33c9e248bc82306c31553c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18b06f22694ad304c3d5683fb730b5c9') in 0.002585 seconds
-  Import took 0.004344 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000627 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.687 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.24 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.3 MB.
-System memory in use after: 63.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1755.
-Total: 1.481300 ms (FindLiveObjects: 0.125600 ms CreateObjectMapping: 0.049700 ms MarkObjects: 1.284300 ms  DeleteObjects: 0.020500 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1534.869571 seconds.
-  path: Assets/SEEDRP/Runtime/LightData/Lighting.cs
-  artifactKey: Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/Runtime/LightData/Lighting.cs using Guid(06aba625a4977c945ab4552f7ea606bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0d55349cd5f6f333d43d1ee8f2a08b4') in 0.008513 seconds
-  Import took 0.010157 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000760 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.700 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.3 MB.
-System memory in use after: 63.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1758.
-Total: 1.311700 ms (FindLiveObjects: 0.112600 ms CreateObjectMapping: 0.033100 ms MarkObjects: 1.146800 ms  DeleteObjects: 0.018200 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 1353.391705 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '930005c69870a0884f216a71b7822ff0') in 0.013557 seconds
-  Import took 0.015431 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.135338 seconds.
-  path: Assets/SEEDRP/ShaderLibrary/Lighting.hlsl
-  artifactKey: Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SEEDRP/ShaderLibrary/Lighting.hlsl using Guid(3e32419ed61e1274c982db08041fdf3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '930005c69870a0884f216a71b7822ff0') in 0.003242 seconds
-  Import took 0.005089 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000707 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.25 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.730 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.3 MB.
-System memory in use after: 63.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1761.
-Total: 1.329000 ms (FindLiveObjects: 0.125200 ms CreateObjectMapping: 0.035100 ms MarkObjects: 1.148400 ms  DeleteObjects: 0.019400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.000741 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.23 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.645 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.21 ms, found 0 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1288 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 63.3 MB.
-System memory in use after: 63.4 MB.
-
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1764.
-Total: 1.415600 ms (FindLiveObjects: 0.116100 ms CreateObjectMapping: 0.036400 ms MarkObjects: 1.239800 ms  DeleteObjects: 0.021700 ms)
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 1749.
+Total: 1.258800 ms (FindLiveObjects: 0.110500 ms CreateObjectMapping: 0.032900 ms MarkObjects: 1.095200 ms  DeleteObjects: 0.019600 ms)
 

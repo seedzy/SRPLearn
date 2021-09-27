@@ -16,10 +16,12 @@ MonoBehaviour:
   useDynamicBatching: 1
   useSRPBatcher: 1
   _shadowSettings:
-    maxDistance: 42.2
+    maxDistance: 35.89
+    distanceFade: 0.703
     directional:
       atlasSize: 2048
       cascadeCount: 4
+      cascadeFadeDistance: 0.1
       cascadeRatio1: 0.1
       cascadeRatio2: 0.25
       cascadeRatio3: 0.5
